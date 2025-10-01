@@ -1,4 +1,4 @@
-package com.disk.mono;
+package com.disk.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
