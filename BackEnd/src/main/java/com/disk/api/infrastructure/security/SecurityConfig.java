@@ -47,13 +47,13 @@ public class SecurityConfig {
         "/auth/**",
     };
 
-   @Bean
-   public PasswordEncoder passwordEncoder() {
+    @Bean
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-   }
+    }
 
-   @Bean
-   public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
-   }
+    }
 }
