@@ -11,12 +11,14 @@ import com.disk.api.services.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "/client")
 @Tag(name = "client")
-public class ClientController {
-    private ClientService clientService;
+@RequiredArgsConstructor
+public final class ClientController {
+    private final ClientService clientService;
     @Operation(summary = "Cadastra um novo cliente", method = "POST")
 
     @PostMapping("/register-client")
