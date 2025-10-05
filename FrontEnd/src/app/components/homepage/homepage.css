@@ -1,0 +1,23 @@
+.homepageBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-body);
+    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, var(--background-body) 40px), repeating-linear-gradient(var(--background-Container-lighter), var(--background-Container));
+}
+
+.homepageMainContainer {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.2vh;
+    background: rgba(51, 17, 22, 0.44);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.8px);
+    -webkit-backdrop-filter: blur(4.8px);
+    border: 1px solid rgba(51, 17, 22, 0.41);
+    padding-inline: 3vw;
+    padding-block: 4vh;
+    padding-bottom: 2vh;
+}
