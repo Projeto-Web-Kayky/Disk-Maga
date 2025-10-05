@@ -1,0 +1,39 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputTitle {
+    color: var(--font-input-color);
+    font-size: 0.8em;
+    margin-left: 0.5vw;
+    font-weight: bold;
+}
+
+
+.inputContent {
+    border-radius: var(--component-border-radius);
+    color: var(--font-input-color);
+    padding-left: 1.3vw;
+    aspect-ratio: 16/3;
+    font-family: var(--font-input);
+    transition: var(--transition);
+}
+
+.inputContent:focus {
+    outline: none;
+    border: solid 1px var(--border-input) !important;
+    box-shadow: 0 0 5px var(--border-input);
+}
+
+.inputContent::placeholder {
+    color: rgba(255, 255, 255, 0.315);
+    font-family: var(--font-input);
+}
+
+/* Input da homepage */
+
+.homepageInput {
+    background: #19080A;
+    border: solid 1px #260E11;
+}
