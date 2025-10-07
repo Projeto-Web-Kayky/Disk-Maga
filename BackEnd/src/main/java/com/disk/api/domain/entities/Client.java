@@ -1,4 +1,6 @@
 package com.disk.api.domain.entities;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,12 +22,14 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long client_id;
+    private Long clientId;
     @NotBlank
-    private String client_name;
-    private String client_nickname;
+    private String clientName;
+    private String clientNickname;
     @NotBlank
-    private String phone_number;
-    private Double client_debts;
+    private String phoneNumber;
+    private Double clientDebts;
+
+    private LocalDateTime deletedAt;
 
 }

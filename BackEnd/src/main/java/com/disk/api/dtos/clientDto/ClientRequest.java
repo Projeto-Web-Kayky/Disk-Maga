@@ -4,11 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 
 public record ClientRequest(
     @NotBlank
-    String client_name,
-    String client_nickname,
+    String clientName,
+    String clientNickname,
     @NotBlank
-    String phone_number,
-    Double client_debts
-) {
-
-}
+    String phoneNumber,
+    Double clientDebts
+) {}
