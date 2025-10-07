@@ -12,12 +12,12 @@
     grid-template-rows: repeat(3, 1fr);
     gap: 1.2vh;
     background: rgba(51, 17, 22, 0.44);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.8px);
-    -webkit-backdrop-filter: blur(4.8px);
-    border: 1px solid rgba(51, 17, 22, 0.41);
-    padding-inline: 3vw;
+    border-radius: 1em;
+    box-shadow: 0 0.5em 4em rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0.6em);
+    -webkit-backdrop-filter: blur(0.6em);
+    border: 0.06em solid rgba(51, 17, 22, 0.41);
+    padding-inline: 6vw;
     padding-block: 4vh;
     padding-bottom: 2vh;
 }
