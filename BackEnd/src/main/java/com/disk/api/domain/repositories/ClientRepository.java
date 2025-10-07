@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.disk.api.domain.entities.Client;
 import java.util.List;
-import java.time.LocalDateTime;
 
 
 @Repository
