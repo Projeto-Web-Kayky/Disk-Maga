@@ -1,6 +1,10 @@
 package com.disk.api.domain.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale.Category;
+
+import com.disk.api.domain.enums.UnityMeasure;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,7 +33,7 @@ public class Product {
     @NotBlank
     private String productName;
 
-    private String category;
+    private Category category;
 
     @NotBlank
     private Double salePrice;
@@ -39,7 +43,9 @@ public class Product {
 
     private Integer quantity;
 
-    private String unityMeasure;
+    private UnityMeasure unityMeasure;
+
+    private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<SaleProduct> saleProducts;
