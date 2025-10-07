@@ -6,7 +6,6 @@ import { Button } from "../button/button";
 
 @Component({
   selector: 'app-homepage',
-  imports: [],
   imports: [InputText, Footer, LogoDiskDaMaga, Button],
   templateUrl: './homepage.html',
   styleUrl: './homepage.css'
