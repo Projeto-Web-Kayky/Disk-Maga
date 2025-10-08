@@ -32,4 +32,10 @@ public class SaleProduct {
     @ManyToOne
     @JoinColumn(name = "sale_id", nullable = true)
     private Sale sale;
+
+    public SaleProduct(Sale sale, Product product, Integer quantity) {
+        this.sale = sale;
+        this.product = product;
+        this.quantity = quantity;
+    }
 }
