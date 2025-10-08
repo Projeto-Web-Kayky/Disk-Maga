@@ -2,7 +2,6 @@ package com.disk.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 
 import com.disk.api.dtos.authDto.LoginRequest;
 import com.disk.api.services.AuthService;

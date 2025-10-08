@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -47,15 +46,15 @@ public class ProductController {
 
     @Operation(summary = "Atualiza um produto.", method = "PUT")
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long productId, @RequestBody @Valid ProductRequest updateProduct) {
-        var response = this.productService.updateProduct(productId, updateProduct);
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductRequest updateProduct) {
+        var response = this.productService.updateProduct(id, updateProduct);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
     
     @Operation(summary = "Deleta um produto.", method = "DELETE")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
-        var response = this.productService.deleteProduct(productId);
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+        var response = this.productService.deleteProduct(id);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
     
