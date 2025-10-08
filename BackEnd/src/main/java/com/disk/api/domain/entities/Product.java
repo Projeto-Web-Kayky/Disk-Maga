@@ -2,7 +2,7 @@ package com.disk.api.domain.entities;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Locale.Category;
+import com.disk.api.domain.enums.Category;
 
 import com.disk.api.domain.enums.UnityMeasure;
 

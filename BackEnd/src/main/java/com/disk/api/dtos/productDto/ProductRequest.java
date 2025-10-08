@@ -1,7 +1,6 @@
 package com.disk.api.dtos.productDto;
 
-import java.util.Locale.Category;
-
+import com.disk.api.domain.enums.Category;
 import com.disk.api.domain.enums.UnityMeasure;
 
 public record ProductRequest(
