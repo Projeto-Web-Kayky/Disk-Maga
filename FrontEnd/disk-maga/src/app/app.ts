@@ -1,15 +1,9 @@
-import { TuiRoot } from "@taiga-ui/core";
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
-import {TuiTextfield} from '@taiga-ui/core';
-import {TuiTextarea} from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-root',
-  imports: [ FormsModule, MatFormFieldModule, MatInputModule, TuiRoot, TuiRoot, TuiTextarea, TuiTextfield],
+  imports: [ RouterOutlet ],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
