@@ -1,0 +1,48 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #1E0B0E;
+    overflow: hidden;
+}
+.logo {
+    width: 150px;
+    margin-bottom: 24px;
+}
+.form-container {
+    width: 90%;
+    max-width: 400px;
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(38, 14, 17, 0.4); 
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 32px 24px;
+    box-sizing: border-box;
+}
+
+:host ::ng-deep .continue-btn {
+  width: 150px;                 
+  max-width: 320px;            
+  background-color: #009225;   
+  color: #fff;                 
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+footer {
+    color: rgb(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: 400;
+    position: fixed;
+    bottom: 16px;
+    z-index: 10;
+}
