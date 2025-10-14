@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/products")
 @RequiredArgsConstructor
 @Tag(name = "product")
 public class ProductController {
@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Retorna uma lista de produtos.", method = "GET")
-    @GetMapping("/products")
+    @GetMapping()
     public ResponseEntity<?> getProducts() {
         var response = this.productService.getProduct();
         return ResponseEntity.status(response.getStatus()).body(response);

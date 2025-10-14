@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping(value = "/client")
+@RequestMapping(value = "/clients")
 @Tag(name = "client")
 @RequiredArgsConstructor
 public final class ClientController {
@@ -36,7 +36,7 @@ public final class ClientController {
     }
 
     @Operation(summary = "Retorna uma lista de clientes", method = "GET")
-    @GetMapping("/clients")
+    @GetMapping()
     public ResponseEntity<?> getClients() {
         var response = this.clientService.getClient();
         return ResponseEntity.status(response.getStatus()).body(response);
