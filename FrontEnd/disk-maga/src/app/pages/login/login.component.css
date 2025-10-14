@@ -8,6 +8,7 @@
     background-color: #1E0B0E;
     overflow: hidden;
 }
+
 .logo {
     width: 150px;
     margin-bottom: 24px;
@@ -29,14 +30,14 @@
 }
 
 :host ::ng-deep .continue-btn {
-  width: 150px;                 
-  max-width: 320px;            
-  background-color: #009225;   
-  color: #fff;                 
-  font-weight: 500;
-  font-size: 16px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+    width: 150px;                 
+    max-width: 320px;            
+    background-color: #009225;   
+    color: #fff;                 
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 footer {
     color: rgb(255, 255, 255, 0.5);
