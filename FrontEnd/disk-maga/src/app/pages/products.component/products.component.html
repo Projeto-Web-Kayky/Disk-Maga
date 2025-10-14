@@ -1,0 +1,55 @@
+<app-top-bar [pageTitle]="'Produto'"></app-top-bar>
+
+<form class="product-form">
+    <div class="form-container">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome do Produto:</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Categoria: </mat-label>
+            <mat-select>
+                @for (category of category; track category) {
+                <mat-option [value]="category.value">{{category.viewValue}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-divider class="divisor"></mat-divider>
+
+        <mat-form-field floatLabel="always" appearance="outline">
+            <mat-label>Preço de Custo:</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" />
+            <span matTextPrefix>R$&nbsp;</span>
+            <span matTextSuffix></span>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always" appearance="outline">
+            <mat-label>Preço de Venda: </mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" />
+            <span matTextPrefix>R$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-divider class="divisor"></mat-divider>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Quantidade: </mat-label>
+            <input matInput type="number">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Unidade de Medida: </mat-label>
+            <mat-select>
+                @for (unityMeasure of unityMeasure; track unityMeasure) {
+                <mat-option [value]="unityMeasure.value">{{unityMeasure.viewValue}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <div class="btnSubmit">
+            <button matFab extended="filled" class="continue-btn">Cadastrar</button>
+        </div>
+    </div>
+</form>
+<app-nav-bar></app-nav-bar>
