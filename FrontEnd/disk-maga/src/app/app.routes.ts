@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { AntiAuthGuard } from './anti-auth.guard';
-import { NavBar } from './components/nav-bar/nav-bar.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 export const publicRoutes = ['/login'];
 
@@ -13,7 +13,7 @@ export const routes: Routes = [
     },
     {
         path: 'navbar',
-        component: NavBar
+        component: NavBarComponent
     },
     {
         path: '',

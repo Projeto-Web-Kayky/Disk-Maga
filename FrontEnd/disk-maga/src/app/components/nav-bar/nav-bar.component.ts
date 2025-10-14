@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBar {
+export class NavBarComponent {
 
   constructor(private router: Router){ }
 

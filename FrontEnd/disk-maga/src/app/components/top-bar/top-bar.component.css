@@ -1,0 +1,26 @@
+.topbar{
+    background: #8b0000;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0.8em 1.3em;
+}
+
+.back-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 0.6em;
+}
+
+.back-button img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: 500;
+}
