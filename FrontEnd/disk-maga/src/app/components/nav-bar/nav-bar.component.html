@@ -1,1 +1,17 @@
-<p>nav-bar works!</p>
+<nav class="navbar">
+    <div class="navbar-item" (click)="navigateTo('dashboard')">
+        <img src="assets/nav-bar/chart.svg" alt="Dashboard">
+    </div>
+    <div class="navbar-item" (click)="navigateTo('tag')">
+        <img src="assets/nav-bar/pricetags.svg" alt="Tag">
+    </div>
+    <div class="navbar-item" (click)="navigateTo('card')">
+        <img src="assets/nav-bar/card.svg" alt="Cartão">
+    </div>
+    <div class="navbar-item" (click)="navigateTo('users')">
+        <img src="assets/nav-bar/people.svg" alt="Usuarios">
+    </div>
+    <div class="navbar-item" (click)="navigateTo('package')">
+        <img src="assets/nav-bar/cube.svg" alt="Estoque">
+    </div>
+</nav>
