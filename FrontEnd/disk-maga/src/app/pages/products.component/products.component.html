@@ -1,7 +1,6 @@
 <app-top-bar [pageTitle]="'Produto'"></app-top-bar>
-
-<form class="product-form">
-    <div class="form-container">
+<div class="container">
+    <form class="product-form">
         <mat-form-field appearance="outline">
             <mat-label>Nome do Produto:</mat-label>
             <input matInput>
@@ -47,9 +46,9 @@
             </mat-select>
         </mat-form-field>
 
-        <div class="btnSubmit">
+        <div class="btn-submit">
             <button matFab extended="filled" class="continue-btn">Cadastrar</button>
         </div>
-    </div>
-</form>
-<app-nav-bar></app-nav-bar>
+    </form>
+    <app-nav-bar></app-nav-bar>
+</div>
