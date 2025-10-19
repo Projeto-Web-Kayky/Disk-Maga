@@ -4,6 +4,7 @@ import { AntiAuthGuard } from './anti-auth.guard';
 import { AuthGuard } from './auth.guard';
 import { ProductsComponent } from './pages/products.component/products.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { CadastrarCliente } from './pages/cadastrar-cliente/cadastrar-cliente.component';
 
 export const publicRoutes = ['/login'];
 
@@ -22,6 +23,11 @@ export const routes: Routes = [
     {
         path: 'navbar',
         component: NavBarComponent
+    },
+    {
+        path: 'cadastrar-cliente',
+        component: CadastrarCliente
+        //,canActivate: [AntiAuthGuard]
     },
     {
         path: '',
