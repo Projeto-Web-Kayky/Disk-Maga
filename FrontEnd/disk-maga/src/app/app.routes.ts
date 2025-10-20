@@ -6,7 +6,6 @@ import { ProductsComponent } from './pages/products.component/products.component
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { Clientes } from './pages/clientes/clientes.component';
 import { CadastrarCliente } from './pages/cadastrar-cliente/cadastrar-cliente.component';
-
 export const publicRoutes = ['/login'];
 
 export const routes: Routes = [
@@ -26,7 +25,6 @@ export const routes: Routes = [
         component: NavBarComponent
     },
     {
-
         path: 'clientes',
         component: Clientes
         //,canActivate: [AntiAuthGuard]

@@ -1,24 +1,20 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TopBar, TopBarComponent } from '../../components/top-bar/top-bar.component';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { TopBarComponent } from '../../components/top-bar/top-bar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { ImagemCliente } from '../../components/imagem-cliente/imagem-cliente.component';
 
-const COMPONENTS = [TopBarComponent];
-const MODULES = [MatButtonModule, MatIconModule];
-
+const MODULES = [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule]
+const COMPONENTS = [TopBarComponent, ImagemCliente]
 @Component({
   selector: 'app-cadastrar-cliente',
-  imports: [ReactiveFormsModule, COMPONENTS, MODULES],
+  imports: [MODULES, COMPONENTS],
   templateUrl: './cadastrar-cliente.component.html',
-  styleUrl: './cadastrar-cliente.component.css'
+  styleUrl: './cadastrar-cliente.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CadastrarCliente {
-  constructor() {
-    const plus_icon = 'assets/icons/plus.svg'
-    const iconRegistry = inject(MatIconRegistry);
-    const sanitizer = inject(DomSanitizer);
-    iconRegistry.addSvgIcon('plus', sanitizer.bypassSecurityTrustResourceUrl(plus_icon));
-  }
+
 }
