@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products.component',
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDividerModule, MatListModule, MatButtonModule, NavBarComponent, TopBarComponent, ReactiveFormsModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDividerModule, MatListModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

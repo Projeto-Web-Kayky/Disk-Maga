@@ -4,8 +4,7 @@ import { AntiAuthGuard } from './anti-auth.guard';
 import { AuthGuard } from './auth.guard';
 import { ProductsComponent } from './pages/products.component/products.component';
 
-// Lista de rotas onde a navbar/topbar NÃO devem aparecer
-export const publicRoutes = ['/login', '/cadastro', '/recuperar-senha'];
+export const publicRoutes = ['/login'];
 
 export const routes: Routes = [
     {

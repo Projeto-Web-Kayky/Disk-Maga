@@ -20,11 +20,9 @@ export class App {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     document.body.classList.add('mat-app-background', 'dark-theme');
 
-    // Verifica rota inicial
     this.updateSidebarVisibility(this.router.url);
     this.updatePageTitle();
 
-    // Observa mudanças de rota
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event) => {
