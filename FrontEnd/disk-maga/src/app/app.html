@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+@if (shouldShowSidebar()) {
+  <app-top-bar [pageTitle]="currentPageTitle()"></app-top-bar>
+}
+
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>
+
+@if (shouldShowSidebar()) {
+  <app-nav-bar></app-nav-bar>
+}

@@ -16,6 +16,3 @@ export class TopBarComponent{
     this.location.back();
   }
 }
-export class TopBar {
-
-}

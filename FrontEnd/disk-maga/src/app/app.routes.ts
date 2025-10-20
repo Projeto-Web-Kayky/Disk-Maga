@@ -3,9 +3,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { AntiAuthGuard } from './anti-auth.guard';
 import { AuthGuard } from './auth.guard';
 import { ProductsComponent } from './pages/products.component/products.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
-export const publicRoutes = ['/login'];
+// Lista de rotas onde a navbar/topbar NÃO devem aparecer
+export const publicRoutes = ['/login', '/cadastro', '/recuperar-senha'];
 
 export const routes: Routes = [
     {
@@ -16,16 +16,16 @@ export const routes: Routes = [
     {
         path: 'products',
         component: ProductsComponent,
-        // canActivate: [AuthGuard],
-        data: { title: 'Produtos', subTitle: 'Adicionar um novo produto' }
-    },
-    {
-        path: 'navbar',
-        component: NavBarComponent
+        canActivate: [AuthGuard],
+        data: { title: 'Produtos' }
     },
     {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
+    },
+    {
+        path: '**',
+        redirectTo: 'login'
     }
 ];

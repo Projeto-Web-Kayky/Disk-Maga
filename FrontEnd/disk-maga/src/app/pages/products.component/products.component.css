@@ -2,13 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: calc(100vh - 120px);
   background-color: #fff8f8;
+  padding: 1rem;
+  padding-bottom: 100px;
+  overflow-y: auto; 
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
-  width: 480px;
+  width: 100%;
+  max-width: 480px;
   height: auto;
   padding: 24px 32px;
   border: 1px solid #ddd;
@@ -32,8 +37,8 @@ mat-form-field {
 }
 
 .btnSubmit {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 :host ::ng-deep .continue-btn {
@@ -50,4 +55,99 @@ mat-form-field {
 
 :host ::ng-deep .continue-btn:hover {
   background-color: #007a1f;
+}
+
+
+@media (max-width: 768px) {
+  .product-form {
+    padding: 1rem 0.5rem;
+    padding-bottom: 100px;
+    min-height: calc(100vh - 120px);
+    align-items: center;
+  }
+
+  .form-container {
+    max-width: 100%;
+    padding: 20px 24px;
+    border-radius: 8px;
+  }
+
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+
+  .divisor.mat-divider-horizontal {
+    margin: 0 0 20px 0;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .product-form {
+    padding: 0.5rem 0;
+    min-height: auto; 
+    height: calc(100vh - 120px); 
+    align-items: center;
+    padding-top: 0.5rem;
+    overflow-y: auto; /
+  }
+
+  .form-container {
+    padding: 16px;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  mat-form-field {
+    margin-bottom: 12px;
+  }
+
+  .divisor.mat-divider-horizontal {
+    margin: 0 0 16px 0;
+  }
+
+  .btnSubmit {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  :host ::ng-deep .continue-btn {
+    max-width: 100%;
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 360px) and (max-height: 700px) {
+  .product-form {
+    padding-bottom: 70px;
+    padding-top: 0.25rem;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+  .form-container {
+    padding: 12px;
+  }
+
+  mat-form-field {
+    margin-bottom: 10px;
+  }
+
+  .divisor.mat-divider-horizontal {
+    margin: 0 0 12px 0;
+  }
+
+  :host ::ng-deep .continue-btn {
+    font-size: 13px;
+    height: 38px;
+  }
+}
+
+@media (min-height: 700px) {
+  .product-form {
+    overflow-y: hidden; 
+  }
 }
