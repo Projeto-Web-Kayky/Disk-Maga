@@ -1,0 +1,10 @@
+<app-top-bar [pageTitle]="'Clientes'" class="topBar"></app-top-bar>
+<div class="main">
+    <label for="">Nenhum cliente encontrado</label>
+    <div class="fabButtonContainer">
+        <button matFab (click)="goToClientRegister()">
+            <mat-icon svgIcon="plus"></mat-icon>
+        </button>
+    </div>
+</div>
+<!-- Eu sei que está fora do padrão, precisa colocar a página em forms, vou corrigir isso, mas preciso entender o funcionamento antes de fazer (funcionamento dos forms)-->

@@ -1,0 +1,8 @@
+.clientImage {
+    border-radius: 50%;
+    border: solid 1px #b9b9b9;
+    width: auto;
+    min-height: 20vh;
+    max-height: 25vh;
+    margin-block: 1.5vh;
+}
