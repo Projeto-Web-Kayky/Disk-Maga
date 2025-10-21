@@ -41,7 +41,7 @@ export class LoginComponent {
     this.loginService.login(formValue.login, formValue.password).subscribe({
       next: (response) => {
         if (response.status === 'OK') {
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/products']);
           console.log('Login bem-sucedido');
         }
         this.snackBar.open('Usuário Logado com Sucesso!', 'Fechar', { duration: 3000 });
