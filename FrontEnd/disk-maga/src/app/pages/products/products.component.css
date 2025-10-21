@@ -3,23 +3,20 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 120px);
-  background-color: #fff8f8;
-  padding: 1rem;
-  padding-bottom: 100px;
+  padding-bottom: 10px;
   overflow-y: auto; 
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 85%;
   max-width: 480px;
+  background-color: #fdf1f2;
   height: auto;
-  padding: 24px 32px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  padding: 24px 32px; 
+  border-radius: 10px !important;
+  box-shadow: 0 3px 3px #a8a3a3 !important;
 }
 
 mat-form-field {
