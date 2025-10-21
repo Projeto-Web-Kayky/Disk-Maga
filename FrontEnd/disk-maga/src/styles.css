@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; width: 100%; margin: 0; padding: 0; overflow-x: hidden;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-form-field { width: 80%; }
+/* Esconder o ícone nativo do Edge para mostrar/ocultar senha */
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+
+/* Para o Chrome */
+input[type="password"]::-webkit-contacts-auto-fill-button {
+    display: none;
+}

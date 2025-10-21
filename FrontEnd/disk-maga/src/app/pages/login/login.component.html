@@ -1,0 +1,28 @@
+<form class="form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+    <img class="logo" src="logo-disk.png" alt="LogoDisk">
+    <div class="form-container">
+        <mat-form-field>
+            <mat-label>Login</mat-label>
+            <input matInput formControlName="login" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
+            <button type="button" matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide()">
+                <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <section>
+            <div class="btnSubmit">
+                <button matFab extended="filled" class="continue-btn">Continuar</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Powered By Zentrix Solutions</p>
+    </footer>
+</form>

@@ -1,0 +1,150 @@
+.product-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  padding-bottom: 10px;
+  overflow-y: auto; 
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-width: 480px;
+  background-color: #fdf1f2;
+  height: auto;
+  padding: 24px 32px; 
+  border-radius: 10px !important;
+  box-shadow: 0 3px 3px #a8a3a3 !important;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.divisor.mat-divider-horizontal {
+  height: 2px;
+  background-color: #d1d1d1;
+  width: 100%;
+  border: none;
+  margin: 0 0 30px 0;
+  border-radius: 2px;
+}
+
+.btnSubmit {
+  display: flex;
+  justify-content: end;
+}
+
+:host ::ng-deep .continue-btn {
+  width: 100%;
+  max-width: 200px;
+  background-color: #009225;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  height: 42px;
+}
+
+:host ::ng-deep .continue-btn:hover {
+  background-color: #007a1f;
+}
+
+
+@media (max-width: 768px) {
+  .product-form {
+    padding: 1rem 0.5rem;
+    padding-bottom: 100px;
+    min-height: calc(100vh - 120px);
+    align-items: center;
+  }
+
+  .form-container {
+    max-width: 100%;
+    padding: 20px 24px;
+    border-radius: 8px;
+  }
+
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+
+  .divisor.mat-divider-horizontal {
+    margin: 0 0 20px 0;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .product-form {
+    padding: 0.5rem 0;
+    min-height: auto; 
+    height: calc(100vh - 120px); 
+    align-items: center;
+    padding-top: 0.5rem;
+    overflow-y: auto; /
+  }
+
+  .form-container {
+    padding: 16px;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  mat-form-field {
+    margin-bottom: 12px;
+  }
+
+  .divisor.mat-divider-horizontal {
+    margin: 0 0 16px 0;
+  }
+
+  .btnSubmit {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  :host ::ng-deep .continue-btn {
+    max-width: 100%;
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 360px) and (max-height: 700px) {
+  .product-form {
+    padding-bottom: 70px;
+    padding-top: 0.25rem;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+  .form-container {
+    padding: 12px;
+  }
+
+  mat-form-field {
+    margin-bottom: 10px;
+  }
+
+  .divisor.mat-divider-horizontal {
+    margin: 0 0 12px 0;
+  }
+
+  :host ::ng-deep .continue-btn {
+    font-size: 13px;
+    height: 38px;
+  }
+}
+
+@media (min-height: 700px) {
+  .product-form {
+    overflow-y: hidden; 
+  }
+}
