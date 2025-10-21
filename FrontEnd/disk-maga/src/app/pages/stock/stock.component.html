@@ -1,0 +1,165 @@
+<div class="content-container">
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon primary-bg">
+            <mat-icon>inventory_2</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">Total Produtos</div>
+            <div class="stat-value">{{ stats.totalProducts }}</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon success-bg">
+            <mat-icon>trending_up</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">Valor Total</div>
+            <div class="stat-value">{{ formatCurrency(stats.totalValue) }}</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon warn-bg">
+            <mat-icon [matBadge]="stats.lowStockCount" [matBadgeHidden]="stats.lowStockCount === 0" matBadgeColor="warn">warning</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">Estoque Baixo</div>
+            <div class="stat-value">{{ stats.lowStockCount }}</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Search Bar -->
+    <mat-card class="search-card">
+      <mat-card-content>
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Pesquisar produto ou código</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input 
+            matInput 
+            [(ngModel)]="searchTerm" 
+            (ngModelChange)="onSearchChange()">
+          <button 
+            *ngIf="searchTerm" 
+            matSuffix 
+            mat-icon-button 
+            (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        
+        <div class="search-results">
+          <span class="result-count">
+            {{ filteredProducts.length }} 
+            {{ filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados' }}
+          </span>
+          <button mat-stroked-button>
+            <mat-icon>filter_list</mat-icon>
+            Filtrar
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Products List -->
+    <div class="products-list">
+      <mat-card *ngFor="let product of filteredProducts" class="product-card">
+        <mat-card-content>
+          <div class="product-header">
+            <div class="product-icon">
+              <mat-icon>inventory_2</mat-icon>
+            </div>
+            <div class="product-title">
+              <h3>{{ product.productName }}</h3>
+              <span class="product-code">ID: {{ product.productId }} | Categoria: {{ product.category }}</span>
+            </div>
+            <button mat-icon-button [matMenuTriggerFor]="productMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #productMenu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>visibility</mat-icon>
+                <span>Visualizar</span>
+              </button>
+              <mat-divider></mat-divider>
+              <button mat-menu-item class="delete-option" (click)="deleteProduct(product.productId)">
+                <mat-icon>delete</mat-icon>
+                <span>Excluir</span>
+              </button>
+            </mat-menu>
+          </div>
+
+          <mat-divider class="product-divider"></mat-divider>
+
+          <div class="product-details">
+            <div class="detail-item">
+              <div class="detail-label">
+                <mat-icon>shopping_cart</mat-icon>
+                Preço de Custo
+              </div>
+              <div class="detail-value cost">{{ formatCurrency(product.costPrice) }}</div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-label">
+                <mat-icon>attach_money</mat-icon>
+                Preço de Venda
+              </div>
+              <div class="detail-value price">{{ formatCurrency(product.salePrice) }}</div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-label">
+                <mat-icon>inventory</mat-icon>
+                Quantidade
+              </div>
+              <div class="detail-value">{{ product.quantity }} {{ product.unityMeasure }}</div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-label">
+                <mat-icon>label</mat-icon>
+                Status
+              </div>
+              <mat-chip-set>
+                <mat-chip [color]="getStatusColor(product.quantity)" highlighted>
+                  {{ getStatusText(product.quantity) }}
+                </mat-chip>
+              </mat-chip-set>
+            </div>
+          </div>
+
+          <!-- Profit Margin Indicator -->
+          <div class="profit-indicator" *ngIf="product.salePrice > product.costPrice">
+            <mat-icon class="profit-icon">trending_up</mat-icon>
+            <span>Margem: {{ ((product.salePrice - product.costPrice) / product.costPrice * 100).toFixed(1) }}%</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Empty State -->
+    <mat-card *ngIf="filteredProducts.length === 0 && !isLoading" class="empty-state">
+      <mat-card-content>
+        <mat-icon class="empty-icon">search_off</mat-icon>
+        <h2>Nenhum produto encontrado</h2>
+        <p>Tente buscar por outro termo ou limpe os filtros</p>
+        <button mat-raised-button color="primary" (click)="clearSearch()">
+          Limpar Busca
+        </button>
+      </mat-card-content>
+    </mat-card>
+</div>
