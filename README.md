@@ -40,28 +40,22 @@ Cada parte pode ser executada separadamente, permitindo o desenvolvimento parale
 
 ## 📱 Foco em Mobile
 
-O **Disk da Maga** foi projetado com **design responsivo**, garantindo uma experiência fluida em **smartphones, tablets e desktops**, permitindo que o proprietário gerencie o bar de forma prática, a qualquer momento.
+O **Disk da Maga** foi projetado com **design responsivo**, garantindo uma experiência fluida em **smartphones, tablets e desktops**, permitindo que o proprietário gerencie o estabelecimento de forma prática, a qualquer momento.
 
 ---
 
 ## 🛠️ Funcionalidades Planejadas
 
-📦 **Cadastro e controle de produtos e bebidas**  
+📦 **Cadastro e controle de produtos**  
 📊 **Controle de estoque e insumos**  
 💰 **Relatórios de vendas e movimentação financeira**  
-🔐 **Autenticação simples para acesso do proprietário**
+🔐 **Autenticação para acesso do proprietário**
 
 ---
 
 ## 🧑‍💻 Equipe de Desenvolvimento
 
-- **Guilherme Augusto Feitosa da Silva**  
-- **Jose Kayky**    
-- **Glauber Lima**  
-- **Anthony Dos Santos Martins**  
-
----
-
-## 🪪 Licença
-
-Este projeto está licenciado sob a licença **MIT** — veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+- **Anthony Dos Santos Martins**
+- **Glauber Lima**
+- **Guilherme Augusto Feitosa da Silva**
+- **Jose Kayky**
