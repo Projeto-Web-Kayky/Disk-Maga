@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 120px);
-  padding-bottom: 10px;
+  min-height: calc(100vh - 7.5em);
+  padding-bottom: 0.625em;
   overflow-y: auto; 
 }
 
@@ -11,26 +11,26 @@
   display: flex;
   flex-direction: column;
   width: 85%;
-  max-width: 480px;
+  max-width: 30em;
   background-color: #fdf1f2;
   height: auto;
-  padding: 24px 32px; 
-  border-radius: 10px !important;
-  box-shadow: 0 3px 3px #a8a3a3 !important;
+  padding: 1.5em 2em;
+  border-radius: 0.625em !important;
+  box-shadow: 0 0.1875em 0.1875em #a8a3a3 !important;
 }
 
 mat-form-field {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1.25em;
 }
 
 .divisor.mat-divider-horizontal {
-  height: 2px;
+  height: 0.125em;
   background-color: #d1d1d1;
   width: 100%;
   border: none;
-  margin: 0 0 30px 0;
-  border-radius: 2px;
+  margin: 0 0 1.875em 0;
+  border-radius: 0.125em;
 }
 
 .btnSubmit {
@@ -40,14 +40,14 @@ mat-form-field {
 
 :host ::ng-deep .continue-btn {
   width: 100%;
-  max-width: 200px;
+  max-width: 12.5em;
   background-color: #009225;
   color: #fff;
   font-weight: 500;
-  font-size: 16px;
-  border-radius: 8px;
+  font-size: 1em;
+  border-radius: 0.5em;
   transition: all 0.3s ease;
-  height: 42px;
+  height: 2.625em;
 }
 
 :host ::ng-deep .continue-btn:hover {
@@ -57,40 +57,40 @@ mat-form-field {
 
 @media (max-width: 768px) {
   .product-form {
-    padding: 1rem 0.5rem;
-    padding-bottom: 100px;
-    min-height: calc(100vh - 120px);
+    padding: 1em 0.5em;
+    padding-bottom: 6.25em;
+    min-height: calc(100vh - 7.5em);
     align-items: center;
   }
 
   .form-container {
     max-width: 100%;
-    padding: 20px 24px;
-    border-radius: 8px;
+    padding: 1.25em 1.5em;
+    border-radius: 0.5em;
   }
 
   mat-form-field {
-    margin-bottom: 16px;
+    margin-bottom: 1em;
   }
 
   .divisor.mat-divider-horizontal {
-    margin: 0 0 20px 0;
+    margin: 0 0 1.25em 0;
   }
 }
 
 
 @media (max-width: 480px) {
   .product-form {
-    padding: 0.5rem 0;
+    padding: 0.5em 0;
     min-height: auto; 
-    height: calc(100vh - 120px); 
+    height: calc(100vh - 7.5em);
     align-items: center;
-    padding-top: 0.5rem;
+    padding-top: 0.5em;
     overflow-y: auto; /
   }
 
   .form-container {
-    padding: 16px;
+    padding: 1em;
     border: none;
     box-shadow: none;
     border-radius: 0;
@@ -98,48 +98,48 @@ mat-form-field {
   }
 
   mat-form-field {
-    margin-bottom: 12px;
+    margin-bottom: 0.75em;
   }
 
   .divisor.mat-divider-horizontal {
-    margin: 0 0 16px 0;
+    margin: 0 0 1em 0;
   }
 
   .btnSubmit {
     justify-content: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5em;
   }
 
   :host ::ng-deep .continue-btn {
     max-width: 100%;
-    font-size: 14px;
-    height: 40px;
+    font-size: 0.875em;
+    height: 2.625em;
   }
 }
 
 @media (max-width: 360px) and (max-height: 700px) {
   .product-form {
-    padding-bottom: 70px;
-    padding-top: 0.25rem;
-    height: calc(100vh - 120px);
+    padding-bottom: 4.375em;
+    padding-top: 0.25em;
+    height: calc(100vh - 7.5em);
     overflow-y: auto;
   }
 
   .form-container {
-    padding: 12px;
+    padding: 0.75em 0.5em;
   }
 
   mat-form-field {
-    margin-bottom: 10px;
+    margin-bottom: 0.625em;
   }
 
   .divisor.mat-divider-horizontal {
-    margin: 0 0 12px 0;
+    margin: 0 0 0.75em 0;
   }
 
   :host ::ng-deep .continue-btn {
-    font-size: 13px;
-    height: 38px;
+    font-size: 0.8125em;
+    height: 2.375em;
   }
 }
 
