@@ -1,16 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { ProductService } from '../../services/product.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Category } from '../../enums/category';
 import { UnityMeasure } from '../../enums/unity-measure';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
-import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -22,8 +20,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProductsComponent {
   productForm!: FormGroup;
-  salePrice: string = '';
-  costPrice: string = '';
 
   category = Object.keys(Category)
     .filter(key => isNaN(Number(key)))
@@ -37,9 +33,9 @@ export class ProductsComponent {
     .map(key => ({
       value: UnityMeasure[key as keyof typeof UnityMeasure],
       viewValue: key.replace('_', ' ')
-    }))
+    }));
 
-    constructor(
+  constructor(
     private productService: ProductService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar
@@ -58,41 +54,8 @@ export class ProductsComponent {
     });
   }
 
-  formatCurrency(value: string): string {
-    if (!value) return '';
-    const numValue = parseFloat(value.replace(/[^0-9]/g, '')) / 100;
-    return numValue.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-    });
-  }
-
-  updateCurrency(event: any, field: 'salePrice' | 'costPrice'): void {
-    const inputValue = event.target.value;
-    const numericValue = inputValue.replace(/[^0-9]/g, '');
-    const formattedValue = this.formatCurrency(numericValue);
-    
-    this[field] = numericValue;
-    this.productForm.get(field)?.setValue(numericValue, { emitEvent: false });
-    event.target.value = formattedValue;
-  }
-
   private resetForm(): void {
-    this.salePrice = '';
-    this.costPrice = '';
-    
-    const emptyForm = {
-      productName: '',
-      salePrice: '',
-      costPrice: '',
-      stockQuantity: '',
-      unitMeasure: '',
-      category: '',
-    };
-
-    this.productForm.reset(emptyForm, { emitEvent: false });
-    
+    this.productForm.reset();
     Object.keys(this.productForm.controls).forEach(key => {
       const control = this.productForm.get(key);
       if (control) {
@@ -114,11 +77,18 @@ export class ProductsComponent {
     }
 
     const formValue = this.productForm.value;
+
+    // Função que converte string "1.234,56" para float 1234.56
+    const parseCurrency = (value: string) => {
+      if (!value) return 0;
+      return parseFloat(value.replace(/\./g, '').replace(',', '.'));
+    };
+
     const product = {
       productName: formValue.productName,
       category: parseFloat(formValue.category),
-      costPrice: parseFloat(formValue.costPrice) / 100,
-      salePrice: parseFloat(formValue.salePrice) / 100,
+      costPrice: parseCurrency(formValue.costPrice),
+      salePrice: parseCurrency(formValue.salePrice),
       quantity: formValue.quantity,
       unityMeasure: formValue.unityMeasure,
     };
@@ -140,5 +110,4 @@ export class ProductsComponent {
       },
     });
   }
-} 
-  
+}
