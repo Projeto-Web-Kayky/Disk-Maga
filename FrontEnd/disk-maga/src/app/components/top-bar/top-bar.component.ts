@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-top-bar',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.css'
 })
@@ -12,7 +13,7 @@ export class TopBarComponent{
 
   constructor(private location:Location){}
 
-  goBack(){
+  logout(){
     this.location.back();
   }
 }
