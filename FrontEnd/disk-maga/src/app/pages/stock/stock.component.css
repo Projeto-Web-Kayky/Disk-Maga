@@ -34,6 +34,9 @@
   width: 1.75em;
   height: 1.75em;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .primary-bg {
@@ -123,6 +126,9 @@
   font-size: 1.5em;
   width: 1.5em;
   height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-title {
