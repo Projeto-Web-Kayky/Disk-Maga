@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,4 +31,11 @@ public class SaleController {
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
+    @Operation(summary = "Retorna todas as vendas", method = "GET")
+    @GetMapping()
+    public ResponseEntity getAllSales() {
+        var response = this.saleService.getAllSales();
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+    
 }
