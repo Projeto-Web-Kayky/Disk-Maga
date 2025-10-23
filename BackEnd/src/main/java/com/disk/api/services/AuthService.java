@@ -11,6 +11,8 @@ import com.disk.api.dtos.authDto.LoginRequest;
 import com.disk.api.dtos.responsesDto.ServiceResponse;
 import com.disk.api.infrastructure.security.TokenService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Service
 public class AuthService {
     @Autowired
@@ -43,6 +45,26 @@ public class AuthService {
         response.setData(token);
         response.setMessage("Login realizado com sucesso.");
         response.setStatus(HttpStatus.OK);
+        return response;
+    }
+    
+    public ServiceResponse<String> logout (HttpServletRequest request) {
+        ServiceResponse<String> response = new ServiceResponse<>();
+
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            response.setStatus(HttpStatus.BAD_REQUEST);
+            response.setMessage("Token não encontrado.");
+            return response;
+        }
+
+        String token = authHeader.substring(7);
+
+        tokenService.revokeToken(token);
+
+        response.setStatus(HttpStatus.OK);
+        response.setMessage("Logout realizado com sucesso.");
         return response;
     }
 
