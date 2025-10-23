@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = `http://localhost:8080/auth/login`;
+  private apiUrl = `http://localhost:8080/auth`;
 
   constructor(
     private http: HttpClient,
@@ -20,7 +20,7 @@ export class LoginService {
         password: password,
       };
 
-      return this.http.post<any>(this.apiUrl, body).pipe(
+      return this.http.post<any>(`${this.apiUrl}/login`, body).pipe(
         tap((response) => {
           this.setToken(response.data);
         })
@@ -38,5 +38,27 @@ export class LoginService {
 
     getToken(): string | null {
       return localStorage.getItem('auth_token');
+    }
+
+    logout(): Observable<IServiceResponse<string>> {
+      const token = this.getToken();
+      if (!token) {
+        this.clearToken();
+        return new Observable(observer =>{
+          observer.next({
+            data: 'null',
+            message:'Sem Token',
+            status:'200'
+          }as IServiceResponse<string>);
+          observer.complete();
+        })
+      }
+      return this.http.post<IServiceResponse<string>>(`${this.apiUrl}/logout`, {},
+        { headers:{ Authorization:`Bearer ${token}` } }
+      ).pipe(tap(()=>this.clearToken()))
+    }
+
+    clearToken(): void {
+      localStorage.removeItem('auth_token');
     }
 }
