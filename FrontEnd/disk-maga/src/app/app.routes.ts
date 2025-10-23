@@ -17,7 +17,7 @@ export const routes: Routes = [
         path: 'products/new-product',
         component: ProductsComponent,
         canActivate: [AuthGuard],
-        data: { title: 'Produtos' }
+        data: { title: 'Cadastrar Produto' }
     },
     {
         path: 'products',

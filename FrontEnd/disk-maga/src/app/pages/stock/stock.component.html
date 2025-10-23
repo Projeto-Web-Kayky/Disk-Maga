@@ -154,7 +154,7 @@
     <!-- Empty State -->
     <mat-card *ngIf="filteredProducts.length === 0 && !isLoading" class="empty-state">
       <mat-card-content>
-        <mat-icon class="empty-icon">search_off</mat-icon>
+        <mat-icon class="empty-icon">archive</mat-icon>
         <h2>Nenhum produto encontrado</h2>
         <p>Tente buscar por outro termo ou limpe os filtros</p>
         <button mat-raised-button color="primary" (click)="clearSearch()">

@@ -33,7 +33,7 @@ public class SaleController {
 
     @Operation(summary = "Retorna todas as vendas", method = "GET")
     @GetMapping()
-    public ResponseEntity getAllSales() {
+    public ResponseEntity<?> getAllSales() {
         var response = this.saleService.getAllSales();
         return ResponseEntity.status(response.getStatus()).body(response);
     }
