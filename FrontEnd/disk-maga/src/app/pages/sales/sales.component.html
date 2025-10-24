@@ -1,1 +1,37 @@
-<p>sales works!</p>
+<div class="content-container">
+    <button mat-fab extended="filled" type="submit" class="new-sale-btn">
+        <mat-icon matPrefix>add_2</mat-icon>
+        Nova Venda
+    </button>
+
+    <mat-divider class="divisor"></mat-divider>
+
+    <mat-card class="sale-card">
+        <mat-card-content>
+            <div class="sale-details">
+
+                <div class="sale-icon">
+                    <mat-icon>sell</mat-icon>
+                </div>
+
+                <div class="products-list">
+                    <mat-list role="list">
+                        <td>1x Coca</td>
+                        <td>2x Peda</td>
+                    </mat-list>
+                </div>
+
+                <div class="subtotal">
+                    <h3>Subtotal</h3>
+                    <span>R$60,00</span>
+                </div>
+
+                <!-- Adicionar a referencia do icone de mais -->
+                <button mat-icon-button>
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

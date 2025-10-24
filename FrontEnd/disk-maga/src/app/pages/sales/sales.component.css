@@ -1,0 +1,103 @@
+.content-container {
+    max-width: 75em;
+    margin: 0 auto;
+    padding: 1.5em 1em 6.25em 1em;
+}
+
+.new-sale-btn {
+  margin-bottom: 1em; 
+}
+
+.divisor {
+  margin: 0.5em 0 1.5em 0; 
+}
+
+.sale-card {
+  margin-bottom: 1.25em;
+}
+
+.sale-card {
+  background-color: #fff0f0;
+  border-radius: 1.25em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1em;
+  border-radius: 0.625em !important;
+  box-shadow: 0 0.1875em 0.1875em #a8a3a3 !important;
+}
+
+.sale-card mat-card-content {
+  padding: 0.5em 1em !important;
+}
+
+.sale-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  min-height: 2.5em;
+}
+
+.sale-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFD1D7;
+  border-radius: 0.6em;
+  width: 3em;   
+  height: 3em;  
+}
+
+.sale-icon mat-icon {
+  color: #E15F70;
+  font-size: 2em;
+}
+
+.products-list {
+  flex: 1;
+  overflow: hidden;
+}
+
+.products-list mat-list {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.products-list mat-list-item {
+  min-height: 1.3em !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1.2em;
+  font-size: 0.9em;
+  color: #333;
+}
+.list td {
+    width: 80%;
+}
+
+.subtotal {
+  text-align: right;
+}
+
+.subtotal h3 {
+  font-size: 0.75em;
+  font-weight: 500;
+  margin: 0 !important;
+  color: #555;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.subtotal span {
+  font-weight: 600;
+  color: #000;
+}
+
+button[mat-icon-button] {
+  color: #555;
+}
+
+.new-sale-btn {
+    background-color: #CDEBD1;
+    color: #597757;
+}
