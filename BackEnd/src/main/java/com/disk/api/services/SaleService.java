@@ -110,19 +110,50 @@ public class SaleService {
                             .collect(Collectors.toList());
 
                     return new SaleResponse(
-                        sale.getSaleDate(),
-                        productResponses,
-                        quantities,
-                        sale.getPayment(),
-                        sale.getClient() != null ? sale.getClient().getClientName() : null,
-                        sale.getSubtotal()
-                    );
+                            sale.getSaleDate(),
+                            productResponses,
+                            quantities,
+                            sale.getPayment(),
+                            sale.getClient() != null ? sale.getClient().getClientName() : null,
+                            sale.getSubtotal());
                 })
-                    .sorted((sA, sB) -> sB.saleDate().compareTo(sA.saleDate()))
-                    .collect(Collectors.toList());
-                    
-                    response.setData(saleResponses);
-                    response.setStatus(HttpStatus.OK);
-                    return response;
+                .sorted((sA, sB) -> sB.saleDate().compareTo(sA.saleDate()))
+                .collect(Collectors.toList());
+
+        response.setData(saleResponses);
+        response.setStatus(HttpStatus.OK);
+        return response;
+    }
+
+    public Sale getSaleById(Long id) {
+        return saleRepo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Venda não encontrada"));
+    }
+
+    public void deleteSale(Long id) {
+        Sale sale = getSaleById(id);
+        saleRepo.delete(sale);
+    }
+
+    public Sale updateSale(Long id, SaleRequest request) {
+    Sale sale = getSaleById(id);
+
+    List<Product> products = productRepo.findAllById(request.productIds());
+    if (products.isEmpty()) {
+        throw new RuntimeException("Produtos não encontrados.");
+    }
+    sale.getSaleProducts().clear();
+
+    for (int i = 0; i < products.size(); i++) {
+        Product product = products.get(i);
+        Integer quantity = request.quantities().get(i);
+        
+        SaleProduct saleProduct = new SaleProduct(sale, product, quantity);
+        sale.addSaleProduct(saleProduct);
+    }
+
+    sale.calculateSubtotal();
+
+    return saleRepo.save(sale);
     }
 }
