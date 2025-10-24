@@ -63,4 +63,13 @@ public class Sale {
             this.subtotal = formattedTotal.doubleValue();
         }
     }
+
+    public void removeProduct (Product product) {
+        this.saleProducts.removeIf(saleProduct -> saleProduct.getProduct().equals(product));
+    }
+
+    public void addSaleProduct(SaleProduct saleProduct) {
+        this.saleProducts.add(saleProduct);
+        saleProduct.setSale(this);
+    }
 }
