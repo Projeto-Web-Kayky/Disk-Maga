@@ -4,6 +4,7 @@ import { AntiAuthGuard } from './anti-auth.guard';
 import { AuthGuard } from './auth.guard';
 import { ProductsComponent } from './pages/products/products.component';
 import { StockComponent } from './pages/stock/stock.component';
+import { SalesComponent } from './pages/sales/sales.component';
 
 export const publicRoutes = ['/login'];
 
@@ -11,19 +12,25 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [AntiAuthGuard]
+        // canActivate: [AntiAuthGuard]
     },
     {
         path: 'products/new-product',
         component: ProductsComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         data: { title: 'Cadastrar Produto' }
     },
     {
         path: 'products',
         component: StockComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         data: { title: 'Estoque' }
+    },
+    {
+        path: 'sales',
+        component: SalesComponent,
+        // canActivate: [AuthGuard],
+        data: { title: 'Vendas' }
     },
     {
         path: '',
