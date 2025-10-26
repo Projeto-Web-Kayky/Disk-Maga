@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { AntiAuthGuard } from './anti-auth.guard';
 import { AuthGuard } from './auth.guard';
-import { ProductsComponent } from './pages/products.component/products.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { Clientes } from './pages/clientes/clientes.component';
 import { CadastrarCliente } from './pages/cadastrar-cliente/cadastrar-cliente.component';
