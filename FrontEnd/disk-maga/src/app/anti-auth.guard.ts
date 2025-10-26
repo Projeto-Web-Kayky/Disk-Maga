@@ -13,7 +13,7 @@ export class AntiAuthGuard implements CanActivate {
 
     canActivate(): boolean {
         if (this.loginService.isAuthenticated()) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/products']);
             return false;
         }
         return true;

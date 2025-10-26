@@ -11,5 +11,5 @@ export interface IProduct {
 }
 
 export interface IProductResponse extends IProduct {
-    id: number
+    productId: number
 }

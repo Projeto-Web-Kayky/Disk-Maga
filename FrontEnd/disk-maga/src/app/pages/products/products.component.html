@@ -1,0 +1,68 @@
+<div class="content-container">
+    <form class="product-form" [formGroup]="productForm" (ngSubmit)="addProduct()">
+        <div class="form-container">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nome do Produto:</mat-label>
+                <input matInput formControlName="productName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Categoria:</mat-label>
+                <mat-select formControlName="category">
+                    @for (category of category; track category) {
+                    <mat-option [value]="category.value">{{ category.viewValue }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-divider class="divisor"></mat-divider>
+
+            <mat-form-field floatLabel="always" appearance="outline">
+                <mat-label>Preço de Custo:</mat-label>
+                <input matInput formControlName="costPrice" type="text" mask="separator.2" thousandSeparator="."
+                    decimalMarker="," class="example-right-align" placeholder="0,00"
+                    (keypress)="allowOnlyNumbers($event)" />
+                <span matTextPrefix>R$&nbsp;</span>
+                <mat-error *ngIf="productForm.get('costPrice')?.hasError('pattern')">
+                    Insira apenas números e vírgulas.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always" appearance="outline">
+                <mat-label>Preço de Venda:</mat-label>
+                <input matInput formControlName="salePrice" type="text" mask="separator.2" thousandSeparator="."
+                    decimalMarker="," class="example-right-align" placeholder="0,00"
+                    (keypress)="allowOnlyNumbers($event)" />
+                <span matTextPrefix>R$&nbsp;</span>
+                <mat-error *ngIf="productForm.get('salePrice')?.hasError('pattern')">
+                    Insira apenas números e vírgulas.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-divider class="divisor"></mat-divider>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Quantidade:</mat-label>
+                <input matInput type="number" formControlName="quantity" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Unidade de Medida:</mat-label>
+                <mat-select formControlName="unityMeasure">
+                    @for (unityMeasure of unityMeasure; track unityMeasure) {
+                    <mat-option [value]="unityMeasure.value">{{ unityMeasure.viewValue }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <div class="btnSubmit">
+                <button mat-fab extended="filled" type="submit" [disabled]="productForm.invalid || isSubmitting"
+                    class="continue-btn">
+                    Cadastrar
+                </button>
+            </div>
+
+        </div>
+    </form>
+</div>

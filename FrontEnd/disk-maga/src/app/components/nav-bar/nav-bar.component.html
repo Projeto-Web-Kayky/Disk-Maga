@@ -1,17 +1,17 @@
 <nav class="navbar">
     <div class="navbar-item" (click)="navigateTo('dashboard')">
-        <img src="assets/icons/chart.svg" alt="Dashboard">
+        <mat-icon>bar_chart</mat-icon>
     </div>
-    <div class="navbar-item" (click)="navigateTo('tag')">
-        <img src="assets/icons/pricetags.svg" alt="Tag">
+    <div class="navbar-item" (click)="navigateTo('products/new-product')">
+        <mat-icon>add_shopping_cart</mat-icon>
     </div>
     <div class="navbar-item" (click)="navigateTo('card')">
-        <img src="assets/icons/card.svg" alt="Cartão">
+        <mat-icon>payments</mat-icon>
     </div>
     <div class="navbar-item" (click)="navigateTo('users')">
-        <img src="assets/icons/people.svg" alt="Usuarios">
+        <mat-icon>people</mat-icon>
     </div>
-    <div class="navbar-item" (click)="navigateTo('package')">
-        <img src="assets/icons/cube.svg" alt="Estoque">
+    <div class="navbar-item" (click)="navigateTo('/products')">
+        <mat-icon>trolley</mat-icon>
     </div>
 </nav>

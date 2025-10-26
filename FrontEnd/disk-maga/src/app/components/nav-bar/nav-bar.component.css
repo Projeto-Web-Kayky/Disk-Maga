@@ -1,29 +1,37 @@
-.navbar{
+.navbar { 
     display: flex;
-    justify-content: space-between;
-    background-color: #A40200;
+    justify-content: space-around;
+    background-color: #8B0000;
     padding: 1.2em 2em;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     height: auto;
+    z-index: 1000;
+    box-shadow: 0 -0.1em 1em rgba(0, 0, 0, 0.2);
 }
 
-.navbar-item{
+.navbar-item {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 3em;
     height: 3em;
+    color: white;
+    cursor: pointer;
 }
 
-.navbar-item img{
-    max-width: 3em;
-    max-height: 3em;
+.navbar-item mat-icon {
+    font-size: 1.7em;
     transition: transform 0.3s;
 }
 
-.navbar-item img:hover {
+.navbar-item mat-icon:hover {
     transform: scale(1.2);
+    color: darkgreen;
+}
+
+body {
+    padding-bottom: 4.5em;
 }

@@ -54,9 +54,35 @@ public class ProductService {
                         p.getUnityMeasure(),
                         p.getQuantity()))
                 .collect(Collectors.toList());
-            
+
         response.setData(productResponses);
         response.setMessage("Exibindo lista de produtos.");
+        response.setStatus(HttpStatus.ACCEPTED);
+
+        return response;
+    }
+
+    public ServiceResponse<List<ProductResponse>> searchProductByName(String name) {
+        var response = new ServiceResponse<List<ProductResponse>>();
+
+        List<Product> products = productRepo.findByDeletedAtIsNull()
+                .stream()
+                .filter(p -> p.getProductName().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.toList());
+
+        List<ProductResponse> productResponses = products.stream()
+                .map(p -> new ProductResponse(
+                        p.getProductId(),
+                        p.getProductName(),
+                        p.getCategory(),
+                        p.getCostPrice(),
+                        p.getSalePrice(),
+                        p.getUnityMeasure(),
+                        p.getQuantity()))
+                .collect(Collectors.toList());
+
+        response.setData(productResponses);
+        response.setMessage("Resultados da busca.");
         response.setStatus(HttpStatus.ACCEPTED);
 
         return response;
@@ -69,7 +95,7 @@ public class ProductService {
 
         if (productEntity.isPresent()) {
             var product = productEntity.get();
-            
+
             int newStockQuantity = product.getQuantity() + updateProduct.quantity();
 
             product.setProductName(updateProduct.productName());
@@ -115,5 +141,4 @@ public class ProductService {
 
         return response;
     }
-
 }

@@ -25,23 +25,23 @@ export class LoginComponent {
     
   ) {
     this.initializeForm();
-   }
+  }
 
-   loginForm!: FormGroup;
-   private initializeForm(): void {
+  loginForm!: FormGroup;
+  private initializeForm(): void {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
-   }
+  }
 
-   submitLogin(): void {
+  submitLogin(): void {
     const formValue = this.loginForm.value;
 
     this.loginService.login(formValue.login, formValue.password).subscribe({
       next: (response) => {
         if (response.status === 'OK') {
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/products']);
           console.log('Login bem-sucedido');
         }
         this.snackBar.open('Usuário Logado com Sucesso!', 'Fechar', { duration: 3000 });
@@ -51,9 +51,9 @@ export class LoginComponent {
         this.snackBar.open('Credenciais inválidas!', 'Fechar', { duration: 3000 });
       }
     });
-   }
+  }
 
-   hide = signal(true);
+  hide = signal(true);
     clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();

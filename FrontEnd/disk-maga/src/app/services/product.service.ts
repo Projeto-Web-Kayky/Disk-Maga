@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   addProduct(product: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(this.apiUrl, product);
+    return this.http.post<IProduct>(`${this.apiUrl}/register-product`, product);
   }
 
   getProducts(): Observable<IServiceResponse<IProductResponse[]>> {
@@ -27,5 +27,10 @@ export class ProductService {
   deleteProduct(productId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${productId}`)
   }
-  
+
+  searchProducts(name: string): Observable<IServiceResponse<IProductResponse[]>> {
+    return this.http.get<IServiceResponse<IProductResponse[]>>(`${this.apiUrl}/search`, {
+      params: { name }
+    });
+  }
 }

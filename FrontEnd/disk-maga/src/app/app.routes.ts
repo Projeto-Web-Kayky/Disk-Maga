@@ -6,23 +6,35 @@ import { ProductsComponent } from './pages/products.component/products.component
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { Clientes } from './pages/clientes/clientes.component';
 import { CadastrarCliente } from './pages/cadastrar-cliente/cadastrar-cliente.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { StockComponent } from './pages/stock/stock.component';
+import { SalesComponent } from './pages/sales/sales.component';
+
 export const publicRoutes = ['/login'];
 
 export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [AntiAuthGuard]
+        // canActivate: [AntiAuthGuard]
+    },
+    {
+        path: 'products/new-product',
+        component: ProductsComponent,
+        // canActivate: [AuthGuard],
+        data: { title: 'Cadastrar Produto' }
     },
     {
         path: 'products',
-        component: ProductsComponent,
+        component: StockComponent,
         // canActivate: [AuthGuard],
-        data: { title: 'Produtos', subTitle: 'Adicionar um novo produto' }
+        data: { title: 'Estoque' }
     },
     {
-        path: 'navbar',
-        component: NavBarComponent
+        path: 'sales',
+        component: SalesComponent,
+        // canActivate: [AuthGuard],
+        data: { title: 'Vendas' }
     },
     {
         path: 'clientes',
@@ -38,5 +50,9 @@ export const routes: Routes = [
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
+    },
+    {
+        path: '**',
+        redirectTo: 'login'
     }
 ];
