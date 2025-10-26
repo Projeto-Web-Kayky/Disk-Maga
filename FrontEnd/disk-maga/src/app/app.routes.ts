@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { AntiAuthGuard } from './anti-auth.guard';
 import { AuthGuard } from './auth.guard';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { Clientes } from './pages/clientes/clientes.component';
 import { CadastrarCliente } from './pages/cadastrar-cliente/cadastrar-cliente.component';
 import { ProductsComponent } from './pages/products/products.component';
@@ -15,35 +14,35 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        // canActivate: [AntiAuthGuard]
+        canActivate: [AntiAuthGuard]
     },
     {
         path: 'products/new-product',
         component: ProductsComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         data: { title: 'Cadastrar Produto' }
     },
     {
         path: 'products',
         component: StockComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         data: { title: 'Estoque' }
     },
     {
         path: 'sales',
         component: SalesComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         data: { title: 'Vendas' }
     },
     {
         path: 'clientes',
-        component: Clientes
-        //,canActivate: [AntiAuthGuard]
+        component: Clientes,
+        canActivate: [AntiAuthGuard]
     },
     {
         path: 'cadastrar-cliente',
-        component: CadastrarCliente
-        //,canActivate: [AntiAuthGuard]
+        component: CadastrarCliente,
+        canActivate: [AntiAuthGuard]
     },
     {
         path: '',
