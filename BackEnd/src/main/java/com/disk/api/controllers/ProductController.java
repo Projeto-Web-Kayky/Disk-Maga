@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping(value = "/products")
@@ -44,18 +42,24 @@ public class ProductController {
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
+    @Operation(summary = "Busca produtos por nome.", method = "GET")
+    @GetMapping("/search")
+    public ResponseEntity<?> searchProducts(@RequestParam String name) {
+        var response = this.productService.searchProductByName(name);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
     @Operation(summary = "Atualiza um produto.", method = "PUT")
     @PutMapping("/{id}")
     public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductRequest updateProduct) {
         var response = this.productService.updateProduct(id, updateProduct);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
-    
+
     @Operation(summary = "Deleta um produto.", method = "DELETE")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         var response = this.productService.deleteProduct(id);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
-    
 }
