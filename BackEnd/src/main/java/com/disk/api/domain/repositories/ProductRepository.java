@@ -10,4 +10,6 @@ import com.disk.api.domain.entities.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByDeletedAtIsNull();
+    List<Product> findByDeletedAtIsNullAndProductNameContainingIgnoreCase(String productName);
 }
+
