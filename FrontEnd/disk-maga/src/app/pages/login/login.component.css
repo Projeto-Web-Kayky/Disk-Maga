@@ -24,7 +24,6 @@
     border-radius: 1em;
     backdrop-filter: blur(0.5em);
     -webkit-backdrop-filter: blur(0.5em);
-    border: 0.0625em solid rgba(255, 255, 255, 0.18);
     padding: 2em 1.5em;
     box-sizing: border-box;
 }
@@ -35,13 +34,13 @@
     background-color: #009225;
     color: #fff;
     font-weight: 500;
-    font-size: 1em;
+    font-size: 1.5em;
     border-radius: 0.5em;
     transition: all 0.3s ease;
 }
 footer {
     color: rgb(255, 255, 255, 0.5);
-    font-size: 0.75em;
+    font-size: 1em;
     font-weight: 400;
     position: fixed;
     bottom: 1em;
