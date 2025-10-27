@@ -1,0 +1,45 @@
+<mat-dialog-content>
+
+    <!-- Campo de busca -->
+    <div class="search-container">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-icon matPrefix>search</mat-icon>
+            <input #productInput type="text" matInput [formControl]="myControl" placeholder="Nome ou código do produto" />
+        </mat-form-field>
+    </div>
+
+    <!-- Título da lista -->
+    <div class="table-header">
+        <span>Produto</span>
+        <span>QTD</span>
+        <span>Valor</span>
+    </div>
+
+    <!-- Lista de produtos -->
+    <div class="product-list">
+        <ng-container *ngFor="let item of products; let i = index">
+            <div class="product-item">
+                <mat-checkbox [(ngModel)]="item.selected">{{ item.name }}</mat-checkbox>
+
+                <div class="quantity-controls">
+                    <button mat-icon-button color="primary" (click)="decrement(item)">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+
+                    <input matInput type="number" [(ngModel)]="item.quantity" class="quantity-input" />
+
+                    <button mat-icon-button color="primary" (click)="increment(item)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+
+                <div class="price">
+                    R$ {{ item.price | number: '1.2-2' }}
+                </div>
+            </div>
+
+            <mat-divider *ngIf="i < products.length - 1"></mat-divider>
+        </ng-container>
+    </div>
+
+</mat-dialog-content>
