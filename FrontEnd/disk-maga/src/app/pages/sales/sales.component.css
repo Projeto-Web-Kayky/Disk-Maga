@@ -4,10 +4,6 @@
     padding: 1.5em 1em 6.25em 1em;
 }
 
-.new-sale-btn {
-  margin-bottom: 1em; 
-}
-
 .divisor {
   margin: 0.5em 0 1.5em 0; 
 }
@@ -98,6 +94,13 @@ button[mat-icon-button] {
 }
 
 .new-sale-btn {
-    background-color: #CDEBD1;
-    color: #597757;
+  background-color: #CDEBD1;
+  color: #597757;
+  margin-bottom: 1em; 
+  transition: all 0.3s ease;
+}
+
+:host ::ng-deep .new-sale-btn:hover {
+  background-color: #76cf73;
+  color: #ddf8e0;
 }
