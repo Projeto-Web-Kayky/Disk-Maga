@@ -1,4 +1,4 @@
-<mat-dialog-content>
+<mat-dialog-content class="dialog-content">
 
     <!-- Campo de busca -->
     <div class="search-container">
@@ -16,30 +16,45 @@
     </div>
 
     <!-- Lista de produtos -->
-    <div class="product-list">
-        <ng-container *ngFor="let item of products; let i = index">
-            <div class="product-item">
-                <mat-checkbox [(ngModel)]="item.selected">{{ item.name }}</mat-checkbox>
+    <div class="list-container">
+        <div class="product-list">
+            <ng-container *ngFor="let item of products; let i = index">
+                <div class="product-item">
+                    <mat-checkbox [(ngModel)]="item.selected">{{ item.name }}</mat-checkbox>
 
-                <div class="quantity-controls">
-                    <button mat-icon-button color="primary" (click)="decrement(item)">
-                        <mat-icon>remove</mat-icon>
-                    </button>
+                    <div class="quantity-controls">
+                        <button mat-icon-button color="primary" (click)="decrement(item)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
 
-                    <input matInput type="number" [(ngModel)]="item.quantity" class="quantity-input" />
+                        <input matInput type="number" [(ngModel)]="item.quantity" class="quantity-input" />
 
-                    <button mat-icon-button color="primary" (click)="increment(item)">
-                        <mat-icon>add</mat-icon>
-                    </button>
+                        <button mat-icon-button color="primary" (click)="increment(item)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+
+                    <div class="price">
+                        R$ {{ item.price | number: '1.2-2' }}
+                    </div>
                 </div>
 
-                <div class="price">
-                    R$ {{ item.price | number: '1.2-2' }}
-                </div>
-            </div>
-
-            <mat-divider *ngIf="i < products.length - 1"></mat-divider>
-        </ng-container>
+                <mat-divider *ngIf="i < products.length - 1"></mat-divider>
+            </ng-container>
+        </div>
     </div>
-
 </mat-dialog-content>
+
+<!-- footer -->
+<mat-dialog-actions class="dialog-footer" align="end">
+    <mat-divider></mat-divider>
+    <div class="footer-container">
+        <div class="subtotal">
+            <span>Total</span>
+            <strong>R$ 24,00</strong>
+        </div>
+        <button mat-icon-button class="btn-continue">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+    </div>
+</mat-dialog-actions>

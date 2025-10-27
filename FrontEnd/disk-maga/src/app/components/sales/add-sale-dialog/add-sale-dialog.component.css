@@ -1,3 +1,15 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh; /* evita cortar o footer */
+  overflow-y: auto;
+  padding: 1em;
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+
 .table-header {
   display: flex;
   justify-content: space-between;
@@ -44,4 +56,48 @@ mat-checkbox {
 
 mat-divider {
   margin: 0.5em 0;
+}
+.dialog-footer {
+  border-top: 1px solid #e0e0e0;
+  padding: 1.5em 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 16px 16px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 90%;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 500;
+  color: #3a3a3a;
+}
+
+.btn-continue {
+  background-color: #CDEBD1;
+  border-radius: 12px;
+  padding: 10px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-continue:hover {
+  background-color: #bde0c1;
+}
+
+.btn-continue mat-icon {
+  color: #597757;
+  font-size: 22px;
 }
