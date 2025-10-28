@@ -60,7 +60,6 @@ export class StockComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
 
-    // Busca reativa com debounce
     this.searchTerm$
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(term => {
@@ -73,7 +72,7 @@ export class StockComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: (response) => {
         this.products = response?.data || [];
-        this.filteredProducts = this.products;
+        this.filteredProducts = [...this.products];
         this.calculateStats();
         this.isLoading = false;
       },
@@ -107,7 +106,7 @@ export class StockComponent implements OnInit {
 
   performSearch(term: string): void {
     if (!term.trim()) {
-      this.filteredProducts = this.products;
+      this.filteredProducts = [...this.products];
       return;
     }
 
@@ -123,6 +122,26 @@ export class StockComponent implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  applySort(criteria: 'priceAsc' | 'priceDesc' | 'quantityAsc' | 'quantityDesc' | 'default'): void {
+    switch (criteria) {
+      case 'priceAsc':
+        this.filteredProducts.sort((a, b) => a.salePrice - b.salePrice);
+        break;
+      case 'priceDesc':
+        this.filteredProducts.sort((a, b) => b.salePrice - a.salePrice);
+        break;
+      case 'quantityAsc':
+        this.filteredProducts.sort((a, b) => a.quantity - b.quantity);
+        break;
+      case 'quantityDesc':
+        this.filteredProducts.sort((a, b) => b.quantity - a.quantity);
+        break;
+      case 'default':
+        this.filteredProducts = [...this.products];
+        break
+    }
   }
 
   getStockStatus(quantity: number): 'normal' | 'low' | 'critical' {
