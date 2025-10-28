@@ -37,7 +37,8 @@ export const routes: Routes = [
     {
         path: 'clientes',
         component: Clientes,
-        canActivate: [AntiAuthGuard]
+        // canActivate: [AntiAuthGuard]
+        data: { title: 'Clientes Cadastrados' }
     },
     {
         path: 'cadastrar-cliente',
