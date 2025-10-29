@@ -26,10 +26,10 @@
                     <span>R$60,00</span>
                 </div>
                 
-                <button mat-icon-button>
+                <button mat-icon-button [matMenuTriggerFor]="detailedMenu">
                     <mat-icon>more_vert</mat-icon>
                 </button>
-                <mat-menu #menuDetalhes="matMenu">
+                <mat-menu #detailedMenu="matMenu">
                     <button mat-menu-item (click)="openSaleDetails()">
                         <mat-icon>open_in_new</mat-icon>
                         <span>Mais detalhes</span>
