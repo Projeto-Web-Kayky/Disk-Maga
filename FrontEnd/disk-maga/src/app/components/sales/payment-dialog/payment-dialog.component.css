@@ -1,62 +1,183 @@
 .dialog-content {
-    height: 100em;
+    height: 100%;
     overflow-y: hidden;
-    max-height: 80vh; 
+    max-height: 80vh;
+    padding: 24px;
 }
 
 mat-divider {
-    margin: 15px;
+    margin: 15px 0;
 }
+
+/* Cabeçalho */
 .header {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
 .header .title {
     font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.header .title small {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
 }
 
 .header .price {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 24px;
+    color: #333;
 }
 
+/* Métodos de Pagamento */
 .payment-method {
     display: flex;
     flex-direction: column;
-    padding: 15px 0px;
-    gap: 20px;
-    height: 35em;
+    padding: 10px 0;
+    gap: 16px;
 }
 
 .payment-method button {
     border-radius: 8px;
     display: flex;
-    gap: 10px;
-    font-size: 20px;
-    padding: 15px;
-    font-weight: 800;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    padding: 16px 20px;
+    font-weight: 600;
     color: #999EA2;
     background-color: #ECEEEF;
     border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 60px;
 }
 
-.payment-method mat-icon {
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
+.payment-method button:hover {
+    background-color: #e0e0e0;
+    transform: translateX(4px);
 }
 
+.payment-method button.selected {
+    background-color: #C8E6C9;
+    color: #2E7D32;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.payment-method button mat-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+    color: inherit;
+}
+
+/* Rodapé */
 .footer {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 15px;
+    gap: 20px;
 }
 
 .footer .value {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.total-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.current-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.current-payment > span:first-child {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.current-payment .price-primary {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.remaining-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 8px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.remaining-payment .label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.remaining-payment .price.remaining {
     font-size: 20px;
-    gap: 10px;
+    font-weight: 700;
+    color: #F57C00;
+}
+
+/* Botão Continuar */
+.continue {
+    display: flex;
+    align-items: flex-end;
+}
+
+.continue-btn {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 24px;
+    height: 48px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.continue-btn:hover:not(:disabled) {
+    background-color: #45a049;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    transform: translateY(-2px);
+}
+
+.continue-btn:disabled {
+    background-color: #BDBDBD;
+    color: #757575;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.continue-btn mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
 }
