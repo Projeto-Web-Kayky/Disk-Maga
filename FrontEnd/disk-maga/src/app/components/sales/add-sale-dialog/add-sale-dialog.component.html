@@ -4,7 +4,23 @@
     <div class="search-container">
         <mat-form-field appearance="fill" class="full-width">
             <mat-icon matPrefix>search</mat-icon>
-            <input #productInput type="text" matInput [formControl]="myControl" placeholder="Nome ou código do produto" />
+            <input 
+                type="text" 
+                matInput [formControl]="myControl" 
+                placeholder="Nome ou código do produto"
+                [formControl]="myControl"
+                [matAutocomplete]="auto" 
+            />
+
+            <mat-autocomplete 
+                #auto="matAutocomplete"  
+                [displayWith]="displayProduct"
+                (optionSelected)="addProduct($event.option.value)"
+            >
+                <mat-option *ngFor="let p of filteredProducts" [value]="p">
+                    {{ p.productName }} — R$ {{ p.salePrice | number: '1.2-2' }}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
@@ -18,16 +34,21 @@
     <!-- Lista de produtos -->
     <div class="list-container">
         <div class="product-list">
-            <ng-container *ngFor="let item of products; let i = index">
+            <ng-container *ngFor="let item of productsInSale; let i = index">
                 <div class="product-item">
-                    <mat-checkbox [(ngModel)]="item.selected">{{ item.name }}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="item.selected" (change)="updateTotal()">{{ item.productName }}</mat-checkbox>
 
                     <div class="quantity-controls">
                         <button mat-icon-button color="primary" (click)="decrement(item)">
                             <mat-icon>remove</mat-icon>
                         </button>
 
-                        <input matInput type="number" [(ngModel)]="item.quantity" class="quantity-input" />
+                        <input 
+                            matInput
+                            type="number" 
+                            [(ngModel)]="item.quantity" 
+                            class="quantity-input" 
+                        />
 
                         <button mat-icon-button color="primary" (click)="increment(item)">
                             <mat-icon>add</mat-icon>
@@ -35,11 +56,11 @@
                     </div>
 
                     <div class="price">
-                        R$ {{ item.price | number: '1.2-2' }}
+                        R$ {{ (item.salePrice * item.quantity) | number: '1.2-2' }}
                     </div>
                 </div>
 
-                <mat-divider *ngIf="i < products.length - 1"></mat-divider>
+                <mat-divider *ngIf="i < productsInSale.length - 1"></mat-divider>
             </ng-container>
         </div>
     </div>
@@ -51,7 +72,7 @@
     <div class="footer-container">
         <div class="subtotal">
             <span>Total</span>
-            <strong>R$ 24,00</strong>
+            <strong>R$ {{ total | number: '1.2-2' }}</strong>
         </div>
         <button mat-icon-button class="btn-continue" (click)="openPaymentDialog()">
             <mat-icon>arrow_forward</mat-icon>

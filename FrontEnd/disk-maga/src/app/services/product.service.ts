@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProduct, IProductResponse } from '../interfaces/iproduct';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IServiceResponse } from '../interfaces/iservice-response';
 
 @Injectable({
@@ -16,9 +16,17 @@ export class ProductService {
     return this.http.post<IProduct>(`${this.apiUrl}/register-product`, product);
   }
 
-  getProducts(): Observable<IServiceResponse<IProductResponse[]>> {
-    return this.http.get<IServiceResponse<IProductResponse[]>>(this.apiUrl);
-  }
+ getProducts(): Observable<IServiceResponse<IProduct[]>> {
+  return this.http.get<IServiceResponse<IProductResponse[]>>(this.apiUrl).pipe(
+    map(response => {
+      const mappedData = response.data.map(p => this.mapProductResponseToProduct(p));
+      return {
+        ...response,
+        data: mappedData
+      };
+    })
+  );
+}
 
   updateProduct(productId: number, updateProduct: IProduct): Observable<IProduct> {
     return this.http.put<IProductResponse>(`${this.apiUrl}/${productId}`, updateProduct);
@@ -28,9 +36,29 @@ export class ProductService {
     return this.http.delete<void>(`${this.apiUrl}/${productId}`)
   }
 
-  searchProducts(name: string): Observable<IServiceResponse<IProductResponse[]>> {
+  searchProducts(name: string): Observable<IServiceResponse<IProduct[]>> {
     return this.http.get<IServiceResponse<IProductResponse[]>>(`${this.apiUrl}/search`, {
       params: { name }
-    });
+    }).pipe(
+      map(response => {
+        const mappedData = response.data.map(p => this.mapProductResponseToProduct(p));
+        return {
+          ...response,
+          data: mappedData
+        };
+      })
+    );
+  }
+
+  private mapProductResponseToProduct(productResponse: IProductResponse): IProduct {
+    return {
+      id: productResponse.productId,
+      productName: productResponse.productName,
+      category: productResponse.category,
+      costPrice: productResponse.costPrice,
+      salePrice: productResponse.salePrice,
+      quantity: productResponse.quantity,
+      unityMeasure: productResponse.unityMeasure
+    };
   }
 }
