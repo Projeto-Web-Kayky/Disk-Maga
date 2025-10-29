@@ -8,24 +8,27 @@
 <hr /> <!--Esses hr/ são espaços vazios, ajuda a deixar o layout nas posições que quero-->
 
 <div class="saleInfo">
-    <h4>ID:</h4> <span class="value">{{ saleId }}</span>
+    <h4>ID:</h4> <span class="value">#{{ saleId }}</span>
 </div>
 <div class="saleInfo">
-    <h4>Data da compra:</h4> <span class="value">{{ date }}</span>
+    <h4>Data da compra: </h4> <span class="value">{{ date }}</span>
 </div>
 <div class="saleInfo">
-    <h4>Método de pagamento:</h4> <span class="value">{{ paymentMethod }}</span>
+    <h4>Método de pagamento: </h4> <span class="value">{{ paymentMethod }}</span>
 </div>
 <div class="saleInfo">
-    <h4>Preço:</h4> <span class="value">R$ {{ total | number:'1.2-2' }}</span>
+    <h4>Cliente: </h4> <span>{{ clientName }}</span>
+</div>
+<div class="saleInfo">
+    <h4>Preço: </h4> <span class="value">{{ formatCurrency(total) }}</span>
 </div>
 
 <div class="items-card">
     <h4>Itens</h4>
     <div *ngFor="let it of items" class="item-row">
         <div class="item-name">{{ it.name }}</div>
-        <div class="item-qty">{{ it.qty }}</div>
-        <div class="item-price">R$ {{ (it.qty * it.price) | number:'1.2-2' }}</div>
+        <div class="item-qty">{{ it.quantity }}</div>
+        <div class="item-price">R$ {{ (it.quantity * it.price) | number:'1.2-2' }}</div>
     </div>
 </div>
 <hr />
