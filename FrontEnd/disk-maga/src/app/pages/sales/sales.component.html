@@ -6,7 +6,7 @@
 
     <mat-divider class="divisor"></mat-divider>
 
-    <mat-card class="sale-card">
+    <mat-card class="sale-card" *ngFor="let sale of sales; trackBy: trackBySale">
         <mat-card-content>
             <div class="sale-details">
 
@@ -15,22 +15,23 @@
                 </div>
 
                 <div class="products-list">
-                    <mat-list role="list">
-                        <td>1x Coca-Cola</td>
-                        <td>2x Amendoim</td>
-                    </mat-list>
+                    <ng-container *ngFor="let product of getProductsList(sale); let i = index">
+                        <div class="product-item" *ngIf="i < 2">
+                            {{ product }}
+                        </div>
+                    </ng-container>
                 </div>
 
                 <div class="subtotal">
                     <h3>Subtotal</h3>
-                    <span>R$60,00</span>
+                    <span>{{ formatCurrency(sale.subtotal) }}</span>
                 </div>
-                
+
                 <button mat-icon-button [matMenuTriggerFor]="detailedMenu">
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #detailedMenu="matMenu">
-                    <button mat-menu-item (click)="openSaleDetails()">
+                    <button mat-menu-item (click)="openSaleDetails(sale)">
                         <mat-icon>open_in_new</mat-icon>
                         <span>Mais detalhes</span>
                     </button>

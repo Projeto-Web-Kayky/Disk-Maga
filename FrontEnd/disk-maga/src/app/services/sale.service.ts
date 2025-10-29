@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IServiceResponse } from '../interfaces/iservice-response';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ISale, ISaleResponse } from '../interfaces/isale';
 
 @Injectable({
@@ -16,8 +16,10 @@ export class SaleService {
     return this.http.get<IServiceResponse<ISaleResponse[]>>(this.apiUrl);
   }
 
-  newSale(sale: ISale): Observable<any> {
-    return this.http.post<ISale>(`${this.apiUrl}/new-sale`, sale)
+  newSale(sale: ISale): Observable<IServiceResponse<string>> {
+    return this.http
+    .post<IServiceResponse<string>>(`${this.apiUrl}/new-sale`, sale)
+    .pipe(map((res) => res));
   }
   
 }
