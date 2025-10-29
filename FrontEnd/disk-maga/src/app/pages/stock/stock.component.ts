@@ -14,6 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { IProductResponse } from '../../interfaces/iproduct';
 import { ProductService } from '../../services/product.service';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 interface StockStats {
   totalProducts: number;
@@ -49,6 +50,8 @@ export class StockComponent implements OnInit {
   stats: StockStats = { totalProducts: 0, totalValue: 0, lowStockCount: 0 };
   isLoading: boolean = false;
 
+  searchTerm$ = new Subject<string>();
+
   constructor(
     private productService: ProductService,
     private snackBar: MatSnackBar
@@ -56,21 +59,20 @@ export class StockComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+
+    this.searchTerm$
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe(term => {
+        this.performSearch(term);
+      });
   }
 
   loadData(): void {
+    this.isLoading = true;
     this.productService.getProducts().subscribe({
       next: (response) => {
-        if (!response?.data) {
-          this.products = [];
-          this.filteredProducts = [];
-          this.calculateStats();
-          this.isLoading = false;
-          return;
-        }
-        
-        this.products = response.data;
-        this.filteredProducts = this.products;
+        this.products = response?.data || [];
+        this.filteredProducts = [...this.products];
         this.calculateStats();
         this.isLoading = false;
       },
@@ -82,6 +84,7 @@ export class StockComponent implements OnInit {
         });
         this.products = [];
         this.filteredProducts = [];
+        this.isLoading = false;
       }
     });
   }
@@ -98,17 +101,47 @@ export class StockComponent implements OnInit {
   }
 
   onSearchChange(): void {
-    if (!this.searchTerm.trim()) {
-      this.filteredProducts = this.products;
+    this.searchTerm$.next(this.searchTerm);
+  }
+
+  performSearch(term: string): void {
+    if (!term.trim()) {
+      this.filteredProducts = [...this.products];
       return;
     }
 
-    const term = this.searchTerm.toLowerCase();
-    this.filteredProducts = this.products.filter(p =>
-      p.productName.toLowerCase().includes(term) ||
-      p.productId.toString().includes(term) ||
-      p.category
-    );
+    this.isLoading = true;
+    this.productService.searchProducts(term).subscribe({
+      next: (res) => {
+        this.filteredProducts = res.data || [];
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Erro na busca:', err);
+        this.snackBar.open('Erro ao buscar produtos', 'Fechar', { duration: 3000 });
+        this.isLoading = false;
+      },
+    });
+  }
+
+  applySort(criteria: 'priceAsc' | 'priceDesc' | 'quantityAsc' | 'quantityDesc' | 'default'): void {
+    switch (criteria) {
+      case 'priceAsc':
+        this.filteredProducts.sort((a, b) => a.salePrice - b.salePrice);
+        break;
+      case 'priceDesc':
+        this.filteredProducts.sort((a, b) => b.salePrice - a.salePrice);
+        break;
+      case 'quantityAsc':
+        this.filteredProducts.sort((a, b) => a.quantity - b.quantity);
+        break;
+      case 'quantityDesc':
+        this.filteredProducts.sort((a, b) => b.quantity - a.quantity);
+        break;
+      case 'default':
+        this.filteredProducts = [...this.products];
+        break
+    }
   }
 
   getStockStatus(quantity: number): 'normal' | 'low' | 'critical' {
@@ -137,11 +170,7 @@ export class StockComponent implements OnInit {
 
   clearSearch(): void {
     this.searchTerm = '';
-    this.onSearchChange();
-  }
-
-  goBack(): void {
-    window.history.back();
+    this.performSearch('');
   }
 
   deleteProduct(productId: number): void {
@@ -169,9 +198,7 @@ export class StockComponent implements OnInit {
 
   refreshData(): void {
     this.loadData();
-    this.snackBar.open('Dados atualizados', 'Fechar', {
-      duration: 2000
-    });
+    this.snackBar.open('Dados atualizados', 'Fechar', { duration: 2000 });
   }
 
   formatCurrency(value: number): string {

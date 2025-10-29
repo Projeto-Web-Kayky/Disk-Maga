@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.disk.api.dtos.clientDto.ClientRequest;
 import com.disk.api.services.ClientService;
@@ -54,6 +56,13 @@ public final class ClientController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteClient (@PathVariable Long id) {
         var response = this.clientService.deleteClient(id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+    @Operation(summary = "Upload de foto do cliente", method = "POST")
+    @PostMapping("/{id}/upload-photo")
+    public ResponseEntity<?> uploadPhoto(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+        var response = this.clientService.uploadClientPhoto(id, file);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 }

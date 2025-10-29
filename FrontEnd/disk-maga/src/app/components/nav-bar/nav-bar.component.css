@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     background-color: #8B0000;
-    padding: 1.2em 2em;
+    padding: 1.2em 1em;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -16,8 +16,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3em;
-    height: 3em;
     color: white;
     cursor: pointer;
 }

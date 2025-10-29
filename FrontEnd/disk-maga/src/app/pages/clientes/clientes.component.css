@@ -1,0 +1,14 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.fabButtonContainer {
+    position: fixed;
+    right: 1.6em;
+    bottom: 4.5em;
+    z-index: 100;
+}

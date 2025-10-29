@@ -253,25 +253,15 @@
   color: white !important;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
   .product-details {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25em;
   }
 
-  .stat-value {
-    font-size: 1.5em;
-  }
-
-  .content-container {
-    padding: 1.5em 1em 6.25em 1em;
-  }
-
-  .toolbar-title {
-    font-size: 1.125em;
+  .detail-item {
+    flex: 1 1 calc(50% - 0.625em); /* Ocupa 50% do espaço disponível */
+    box-sizing: border-box;
   }
 }
