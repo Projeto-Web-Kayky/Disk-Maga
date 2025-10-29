@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { MatButtonModule } from '@angular/material/button';

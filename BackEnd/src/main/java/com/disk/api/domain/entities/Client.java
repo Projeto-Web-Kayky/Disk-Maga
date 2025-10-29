@@ -21,15 +21,15 @@ import lombok.Setter;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long clientId;
+
     @NotBlank
     private String clientName;
     private String clientNickname;
     @NotBlank
     private String phoneNumber;
     private Double clientDebts;
-
     private LocalDateTime deletedAt;
+    private String fotoPath;
 
 }
