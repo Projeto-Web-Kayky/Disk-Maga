@@ -98,7 +98,7 @@
           </div>
           <div class="product-title">
             <h3>{{ product.productName }}</h3>
-            <span class="product-code">ID: {{ product.productId }} | Categoria: {{ product.category }}</span>
+            <span class="product-code">ID: {{ product.id }} | Categoria: {{ product.category }}</span>
           </div>
           <button mat-icon-button [matMenuTriggerFor]="productMenu">
             <mat-icon>more_vert</mat-icon>
@@ -113,7 +113,7 @@
               <span>Visualizar</span>
             </button>
             <mat-divider></mat-divider>
-            <button mat-menu-item class="delete-option" (click)="deleteProduct(product.productId)">
+            <button mat-menu-item class="delete-option" (click)="deleteProduct(product.id!)">
               <mat-icon>delete</mat-icon>
               <span>Excluir</span>
             </button>

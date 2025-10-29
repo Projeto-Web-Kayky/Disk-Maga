@@ -12,7 +12,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { IProductResponse } from '../../interfaces/iproduct';
+import { IProduct, IProductResponse } from '../../interfaces/iproduct';
 import { ProductService } from '../../services/product.service';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
@@ -45,8 +45,8 @@ interface StockStats {
 })
 export class StockComponent implements OnInit {
   searchTerm: string = '';
-  products: IProductResponse[] = [];
-  filteredProducts: IProductResponse[] = [];
+  products: IProduct[] = [];
+  filteredProducts: IProduct[] = [];
   stats: StockStats = { totalProducts: 0, totalValue: 0, lowStockCount: 0 };
   isLoading: boolean = false;
 
