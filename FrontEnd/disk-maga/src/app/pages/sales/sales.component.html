@@ -27,10 +27,19 @@
                 </div>
 
                 <!-- Adicionar a referencia do icone de mais -->
-                <button mat-icon-button>
+                <button mat-icon-button [matMenuTriggerFor]="menuDetalhes">
                     <mat-icon>more_vert</mat-icon>
                 </button>
-
+                <mat-menu #menuDetalhes="matMenu">
+                    <button mat-menu-item (click)="openSaleDetails()">
+                        <mat-icon>open_in_new</mat-icon>
+                        <span>Mais detalhes</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                        <mat-icon>delete</mat-icon>
+                        <span>Excluir venda</span>
+                    </button>
+                </mat-menu>
             </div>
         </mat-card-content>
     </mat-card>

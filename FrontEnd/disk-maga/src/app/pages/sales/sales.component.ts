@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, inject, OnDestroy, ViewChild, } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,6 +14,7 @@ import { ISale, ISaleResponse } from '../../interfaces/isale';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
+import { ExpandSaleDetails } from '../../components/sales/expand-sale-details/expand-sale-details.component';
 
 interface SaleItem {
   more: ISale;
@@ -64,7 +58,7 @@ export class SalesComponent implements AfterViewInit, OnDestroy {
 
   readonly dialog = inject(MatDialog);
 
-  constructor(private readonly saleService: SaleService, private readonly cdr: ChangeDetectorRef) {}
+  constructor(private readonly saleService: SaleService, private readonly cdr: ChangeDetectorRef) { }
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
@@ -93,4 +87,14 @@ export class SalesComponent implements AfterViewInit, OnDestroy {
         }
       });
   }
+  private readonly DIALOG_DETAILS_CONFIG = {
+    CONFIGS: {
+      width: '90%',
+      maxWidth: '40vw' //fui colocar umas estilizações extras, mas não serviu como eu queria, deixei só isso msm
+    }
+  } as const;
+  openSaleDetails() {
+    this.dialog.open(ExpandSaleDetails, this.DIALOG_DETAILS_CONFIG.CONFIGS);
+  }
 }
+
