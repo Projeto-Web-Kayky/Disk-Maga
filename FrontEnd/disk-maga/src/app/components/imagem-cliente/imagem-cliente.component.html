@@ -1,1 +1,4 @@
-<img src="{{imagePath}}" alt="" class="clientImage">
+<img *ngIf="src; else placeholder" [src]="src" [alt]="alt">
+<ng-template #placeholder>
+    <div class="placeholder">Sem imagem</div>
+</ng-template>

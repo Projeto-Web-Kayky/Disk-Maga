@@ -1,11 +1,11 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-imagem-cliente',
-  imports: [],
   templateUrl: './imagem-cliente.component.html',
-  styleUrl: './imagem-cliente.component.css'
+  styleUrls: ['./imagem-cliente.component.css']
 })
-export class ImagemCliente {
-  @Input() imagePath: string = '';
+export class ImagemClienteComponent {
+  @Input() src: string | null = null;
+  @Input() alt: string = '';
 }
