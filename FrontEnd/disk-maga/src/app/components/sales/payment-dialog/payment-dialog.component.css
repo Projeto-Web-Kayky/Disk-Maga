@@ -45,6 +45,8 @@ mat-divider {
     flex-direction: column;
     padding: 10px 0;
     gap: 16px;
+    height: 36em;
+    justify-content: center;
 }
 
 .payment-method button {
