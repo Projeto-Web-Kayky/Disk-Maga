@@ -1,8 +1,19 @@
 <div class="main">
-    <label for="">Nenhum cliente encontrado</label>
     <div class="fabButtonContainer">
-        <button matFab (click)="goToClientRegister()">
-            <mat-icon  svgIcon="plus"></mat-icon>
+        <button mat-fab color="primary" (click)="openDialog()">
+            <mat-icon svgIcon="plus"></mat-icon>
         </button>
+    </div>
+
+    <div class="client-list">
+        <div class="client-card" *ngFor="let client of clients">
+
+            <div class="client-info">
+                <h3>{{ client.clientName }}</h3>
+                <p>{{ client.clientNickname }}</p>
+                <p>{{ client.phoneNumber }}</p>
+                <p>Dívida: {{ client.clientDebts | currency:'BRL':'symbol' }}</p>
+            </div>
+        </div>
     </div>
 </div>
