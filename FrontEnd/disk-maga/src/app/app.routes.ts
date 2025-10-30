@@ -2,8 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { AntiAuthGuard } from './anti-auth.guard';
 import { AuthGuard } from './auth.guard';
-import { Clientes } from './pages/clientes/clientes.component';
-import { CadastrarCliente } from './pages/cadastrar-cliente/cadastrar-cliente.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { StockComponent } from './pages/stock/stock.component';
 import { SalesComponent } from './pages/sales/sales.component';
@@ -36,14 +35,9 @@ export const routes: Routes = [
     },
     {
         path: 'clientes',
-        component: Clientes,
-        // canActivate: [AntiAuthGuard]
+        component: ClientesComponent,
+        canActivate: [AntiAuthGuard],
         data: { title: 'Clientes Cadastrados' }
-    },
-    {
-        path: 'cadastrar-cliente',
-        component: CadastrarCliente,
-        canActivate: [AntiAuthGuard]
     },
     {
         path: '',
