@@ -4,6 +4,7 @@ import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Payment } from '../../../enums/payment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface PaymentDialogData {
   total: number;
@@ -31,7 +32,8 @@ export class PaymentDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<PaymentDialogComponent, PaymentDialogResult>,
-    @Inject(MAT_DIALOG_DATA) public data: PaymentDialogData
+    @Inject(MAT_DIALOG_DATA) public data: PaymentDialogData,
+    private snackBar: MatSnackBar
   ) {}
 
   selectPaymentMethod(method: Payment): void {
@@ -44,7 +46,7 @@ export class PaymentDialogComponent {
 
   continue(): void {
     if (this.selectedPayment === null) {
-      alert('Por favor, selecione um método de pagamento');
+      this.snackBar.open('Por favor, selecione um método de pagamento', 'Fechar', { duration: 3000 });
       return;
     }
 
