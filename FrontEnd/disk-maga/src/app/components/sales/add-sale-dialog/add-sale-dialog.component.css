@@ -12,7 +12,7 @@
 
 .table-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   font-weight: 600;
   color: #5a3c3c;
   margin-bottom: 0.5em;
@@ -38,8 +38,12 @@
 }
 
 .quantity-input {
-  width: 40px;
+  width: 30px;
   text-align: center;
+  background: #d9d9d9;
+  aspect-ratio: 1/1;
+  border-radius: 0.3em;
+  border: none;
 }
 
 .price {
