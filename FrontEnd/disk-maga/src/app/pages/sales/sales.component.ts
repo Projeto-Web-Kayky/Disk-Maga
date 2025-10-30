@@ -88,7 +88,6 @@ export class SalesComponent implements OnInit, OnDestroy {
 
   loadSales(): void {
     this.isLoading = true;
-    console.log('🔄 Carregando vendas...');
 
     this.saleService.getAllSales()
       .pipe(takeUntil(this.destroy$))
@@ -116,7 +115,6 @@ export class SalesComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((result) => {
         if (result?.success) {
-          console.log('✅ Venda concluída, recarregando lista...');
           this.loadSales();
         }
       });

@@ -43,4 +43,12 @@
             </div>
         </mat-card-content>
     </mat-card>
+
+    <mat-card *ngIf="sales.length === 0 && !isLoading" class="empty-state">
+        <mat-card-content>
+            <mat-icon class="empty-icon">sell</mat-icon>
+            <h2>Nenhuma venda encontrada</h2>
+            <p>Cadastre uma nova venda</p>
+        </mat-card-content>
+    </mat-card>
 </div>
