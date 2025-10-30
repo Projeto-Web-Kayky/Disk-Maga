@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { IProduct } from '../../../interfaces/iproduct';
@@ -19,6 +19,8 @@ import { SaleService } from '../../../services/sale.service';
 import { ISale } from '../../../interfaces/isale';
 import { Payment } from '../../../enums/payment';
 import { IServiceResponse } from '../../../interfaces/iservice-response';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-sale-dialog',
@@ -62,18 +64,18 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private saleService: SaleService
+    private saleService: SaleService,
+    private snackBar: MatSnackBar,
+    private dialogRef: MatDialogRef<AddSaleDialogComponent>
   ) {}
 
   ngOnInit() {
-    console.log('🚀 Componente iniciado');
     
     this.myControl.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((value) => {
-          console.log('🔍 Buscando por:', value);
           return this.productService.searchProducts(value || '');
         }),
         takeUntil(this.destroy$)
@@ -83,7 +85,7 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
           this.filteredProducts = response.data;
         },
         error: (err) => {
-          console.error('Erro ao buscar produtos:', err);
+          this.snackBar.open('Erro ao buscar produtos: ', 'Fechar', err);
         },
       });
   }
@@ -92,7 +94,7 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
     
     if (!product.id) {
       console.error('Produto sem ID:', product);
-      alert('Erro: Produto sem ID válido');
+      this.snackBar.open('Erro: Produto sem ID válido', 'Fechar', { duration: 3000 });
       return;
     }
     
@@ -105,7 +107,6 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
     
     this.updateTotal();
     this.myControl.setValue('');
-    console.log('Produtos na venda:', this.productsInSale);
   }
 
   increment(item: any) {
@@ -128,11 +129,10 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
 
   openPaymentDialog() {
     const selected = this.productsInSale.filter((p) => p.selected);
-  const unselected = this.productsInSale.filter((p) => !p.selected);
+    const unselected = this.productsInSale.filter((p) => !p.selected);
 
   if (selected.length === 0) {
-    console.error('Nenhum produto selecionado!');
-    alert('Por favor, selecione pelo menos um produto para pagar');
+    this.snackBar.open('Por favor, selecione pelo menos um produto para pagar', 'Fechar', { duration: 3000 });
     return;
   }
 
@@ -140,6 +140,7 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
   
   if (validProducts.length === 0) {
     console.error('Nenhum produto possui ID válido!');
+    this.snackBar.open('Erro: Produto sem ID válido', 'Fechar', { duration: 3000 });
     alert('Erro: Produtos sem ID válido');
     return;
   }
@@ -175,7 +176,6 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
 
         this.saleService.newSale(sale).subscribe({
           next: (res) => {
-            console.log('Venda registrada com sucesso!', res);
             
             if (hasUnselectedProducts) {
               // PAGAMENTO PARCIAL: Remover apenas os produtos pagos
@@ -186,26 +186,20 @@ export class AddSaleDialogComponent implements OnInit, OnDestroy {
               
               this.updateTotal();
               
-              alert(
-                `Pagamento parcial realizado com sucesso!\n\n` +
-                `Pago: ${this.formatCurrency(selectedTotal)}\n` +
-                `Restante: ${this.formatCurrency(remainingTotal)}\n\n` +
-                `${this.productsInSale.length} produto(s) ainda na lista.`
-              );
-              
-              console.log('📋 Produtos restantes:', this.productsInSale);
             } else {
               // PAGAMENTO COMPLETO: Limpar tudo
               this.productsInSale = [];
               this.total = 0;
               this.myControl.setValue('');
               
-              alert('Venda finalizada com sucesso!');
+              this.snackBar.open('Venda finalizada com sucesso!', 'Fechar', { duration: 3000 });
+
+              this.dialogRef.close({ success: true });
             }
           },
           error: (err) => {
             console.error('Erro ao registrar venda:', err);
-            alert('Erro ao registrar venda: ' + (err.error?.message || 'Erro desconhecido'));
+            this.snackBar.open('Erro ao registrar venda: ', err.error?.message, { duration: 3000 });
           },
         });
       } else {
