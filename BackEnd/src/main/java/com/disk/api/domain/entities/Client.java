@@ -1,4 +1,5 @@
 package com.disk.api.domain.entities;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
@@ -29,7 +30,8 @@ public class Client {
     @NotBlank
     private String phoneNumber;
     private Double clientDebts;
-    private LocalDateTime deletedAt;
+
     private String fotoPath;
 
+    private LocalDateTime deletedAt;
 }

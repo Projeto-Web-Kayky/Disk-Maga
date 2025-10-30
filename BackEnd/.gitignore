@@ -32,3 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 /src/main/resources/application.properties
+
+uploads/clientes/*.png
+uploads/clientes/*.jpg
+uploads/clientes/*.jpeg
+!uploads/clientes/.gitkeep

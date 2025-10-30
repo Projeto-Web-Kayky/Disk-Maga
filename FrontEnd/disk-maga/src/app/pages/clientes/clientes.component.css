@@ -1,14 +1,50 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  padding: 2rem;
+  position: relative;
 }
 
 .fabButtonContainer {
-    position: fixed;
-    right: 1.6em;
-    bottom: 4.5em;
-    z-index: 100;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.client-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.client-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 300px;
+  background-color: #fafafa;
+  transition: box-shadow 0.3s ease;
+}
+
+.client-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.client-info h3 {
+  margin: 0 0 0.2rem 0;
+}
+
+.img-cli{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.client-info p {
+  margin: 0.1rem 0;
+  font-size: 0.9rem;
+  color: #555;
 }
