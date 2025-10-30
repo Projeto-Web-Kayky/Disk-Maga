@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="client-form">
+    <h2 mat-dialog-title>Cadastrar Cliente</h2>
+
+    <!-- Preview e input de imagem -->
+    <div class="image-container">
+        <label class="image-label" for="photoInput">
+            <div class="image-preview" *ngIf="imagePreview; else noPhoto">
+                <img [src]="imagePreview" alt="Foto do cliente" />
+            </div>
+            <ng-template #noPhoto>
+                <div class="placeholder">Selecionar foto</div>
+            </ng-template>
+        </label>
+        <input id="photoInput" name="photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden />
+    </div>
+
+    <!-- Campos do formulário -->
+    <div class="form-fields">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="clientName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Apelido</mat-label>
+            <input matInput formControlName="clientNickname" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phoneNumber" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Dívida</mat-label>
+            <input matInput type="number" formControlName="clientDebts" />
+        </mat-form-field>
+    </div>
+
+    <!-- Botões de ação -->
+    <div class="actions">
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">
+            Salvar
+        </button>
+        <button mat-button mat-dialog-close type="button">
+            Cancelar
+        </button>
+    </div>
+</form>
